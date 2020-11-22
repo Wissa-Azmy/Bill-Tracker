@@ -19,7 +19,9 @@ struct ContentView: View {
 	@State private var itemName = ""
 	@State private var itemPrice = ""
 	@State private var saleValueIndex = 0
-	private var saleValues = [0, 10, 20, 30, 50, 70]
+	@State private var showingResetAlert = false
+	
+	private let saleValues = [0, 10, 20, 30, 50, 70]
 	
 	@State private var totalPrice = 0.0
 	@State private var totalAfterSale = 0.0
@@ -96,13 +98,24 @@ struct ContentView: View {
 					Text("Items: \(items.count)")
 					Spacer()
 					Button(action: {
-						items.removeAll()
-						totalPrice = 0.0
-						totalAfterSale = 0.0
-						totalSaved = 0.0
+						showingResetAlert = true
+						
 					}, label: {
 						Text("Reset")
 					})
+					.alert(isPresented: $showingResetAlert) {
+						Alert(
+							title: Text("Careful!"),
+							message: Text("This will delete all your items"),
+							primaryButton: .default(Text("OK")){
+								items.removeAll()
+								totalPrice = 0.0
+								totalAfterSale = 0.0
+								totalSaved = 0.0
+							},
+							secondaryButton: .cancel()
+						)
+					}
 				}) {
 					List(items, id: \.id) { item in
 						
