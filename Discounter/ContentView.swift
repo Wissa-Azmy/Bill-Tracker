@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Item {
+	let id = UUID()
 	var name = ""
 	var price = 0.0
 	var sale = 0
@@ -67,7 +68,12 @@ struct ContentView: View {
 							totalSaved += saleSavingsPerItem
 							
 							var item = Item()
-							item.name = itemName
+							if !itemName.isEmpty {
+								item.name = itemName
+							} else {
+								item.name = "Item " + String(items.count + 1)
+							}
+							
 							item.price = Double(itemPrice) ?? 0
 							item.sale = saleValues[saleValueIndex]
 							item.discountedPrice = itemPriceAfterSale
@@ -86,8 +92,19 @@ struct ContentView: View {
 					Text("You Save: $ \(totalSaved, specifier: "%.2f")")
 				}
 				
-				Section(header: Text("Items")) {
-					List(items, id: \.name) { item in
+				Section(header: HStack {
+					Text("Items: \(items.count)")
+					Spacer()
+					Button(action: {
+						items.removeAll()
+						totalPrice = 0.0
+						totalAfterSale = 0.0
+						totalSaved = 0.0
+					}, label: {
+						Text("Reset")
+					})
+				}) {
+					List(items, id: \.id) { item in
 						
 						HStack {
 							Text("\(item.name) |")
