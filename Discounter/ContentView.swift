@@ -31,7 +31,7 @@ struct ContentView: View {
 	
 	@State private var items = [Item]()
 	@State private var filterValueIndex = 0
-	@State private var filterValues: [Int] = [1,2,3,5]
+	@State private var filterValues: [Int] = [1]
 	
 	var saleSavingsPerItem: Double {
 		return (Double(itemPrice) ?? 0) / 100 * Double(saleValues[saleValueIndex])
@@ -141,12 +141,14 @@ struct ContentView: View {
 							)
 						}
 					}
-					Picker("Filter", selection: $filterValueIndex) {
-						ForEach(0 ..< filterValues.count) {
-							Text("\(filterValues[$0])")
+					if filterValues.count > 1 {
+						Picker("Filter", selection: $filterValueIndex) {
+							ForEach(filterValues.indices, id: \.self) {
+								Text("\(filterValues[$0])")
+							}
 						}
+						.pickerStyle(SegmentedPickerStyle())
 					}
-					.pickerStyle(SegmentedPickerStyle())
 				}) {
 					List(items, id: \.id) { item in
 						HStack {
