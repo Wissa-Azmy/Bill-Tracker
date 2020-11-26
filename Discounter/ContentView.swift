@@ -11,6 +11,7 @@ struct Item {
 	let id = UUID()
 	var name = ""
 	var price = 0.0
+	var numberOfPeople = 0
 	var sale = 0
 	var discountedPrice = 0.0
 }
@@ -19,6 +20,7 @@ struct ContentView: View {
 	@State private var itemName = ""
 	@State private var itemPrice = ""
 	@State private var saleValueIndex = 0
+	@State private var numberOfPeople = 1
 	@State private var showingResetAlert = false
 	
 	private let saleValues = [0, 10, 20, 30, 50, 70]
@@ -28,6 +30,8 @@ struct ContentView: View {
 	@State private var totalSaved = 0.0
 	
 	@State private var items = [Item]()
+	@State private var filterValueIndex = 0
+	@State private var filterValues: [Int] = [1,2,3,5]
 	
 	var saleSavingsPerItem: Double {
 		return (Double(itemPrice) ?? 0) / 100 * Double(saleValues[saleValueIndex])
@@ -40,11 +44,24 @@ struct ContentView: View {
 		return (price - price / 100 * saleValue)
 	}
 	
+	fileprivate func resetItemData() {
+		itemName = ""
+		itemPrice = ""
+		numberOfPeople = 1
+	}
+	
+	fileprivate func resetBillData() {
+		items.removeAll()
+		totalPrice = 0.0
+		totalAfterSale = 0.0
+		totalSaved = 0.0
+	}
+	
 	var body: some View {
 		NavigationView {
 			Form {
 				Section(header: Text("Pick Sale Value")) {
-					Picker("Tip", selection: $saleValueIndex) {
+					Picker("Sale", selection: $saleValueIndex) {
 						ForEach(0 ..< saleValues.count) {
 							Text("\(saleValues[$0])%")
 						}
@@ -59,6 +76,9 @@ struct ContentView: View {
 						TextField("Amount", text: $itemPrice)
 							.keyboardType(.decimalPad)
 					}
+					Stepper(value: $numberOfPeople, in: 1...10) {
+						Text("People: \(numberOfPeople)")
+					}
 					HStack {
 						Text("Sale Price: $ \(itemPriceAfterSale, specifier: "%.2f")")
 						Spacer()
@@ -68,6 +88,12 @@ struct ContentView: View {
 							totalPrice += Double(itemPrice) ?? 0
 							totalAfterSale += itemPriceAfterSale
 							totalSaved += saleSavingsPerItem
+							if !filterValues.contains(numberOfPeople) {
+								filterValues.append(numberOfPeople)
+								filterValues.sort()
+							}
+							print(filterValues.count)
+							
 							
 							var item = Item()
 							if !itemName.isEmpty {
@@ -77,13 +103,13 @@ struct ContentView: View {
 							}
 							
 							item.price = Double(itemPrice) ?? 0
+							item.numberOfPeople = numberOfPeople
 							item.sale = saleValues[saleValueIndex]
 							item.discountedPrice = itemPriceAfterSale
 							
-							itemName = ""
-							itemPrice = ""
-							
 							items.append(item)
+							
+							resetItemData()
 						}
 					}
 				}
@@ -94,31 +120,35 @@ struct ContentView: View {
 					Text("You Save: $ \(totalSaved, specifier: "%.2f")")
 				}
 				
-				Section(header: HStack {
-					Text("Items: \(items.count)")
-					Spacer()
-					Button(action: {
-						showingResetAlert = true
-						
-					}, label: {
-						Text("Reset")
-					})
-					.alert(isPresented: $showingResetAlert) {
-						Alert(
-							title: Text("Careful!"),
-							message: Text("This will delete all your items"),
-							primaryButton: .default(Text("OK")){
-								items.removeAll()
-								totalPrice = 0.0
-								totalAfterSale = 0.0
-								totalSaved = 0.0
-							},
-							secondaryButton: .cancel()
-						)
+				Section(header: VStack {
+					HStack {
+						Text("Items: \(items.count) (filtered by no. of people)")
+						Spacer()
+						Button(action: {
+							showingResetAlert = true
+							
+						}, label: {
+							Text("Reset")
+						})
+						.alert(isPresented: $showingResetAlert) {
+							Alert(
+								title: Text("Careful!"),
+								message: Text("This will delete all your items"),
+								primaryButton: .default(Text("OK")){
+									resetBillData()
+								},
+								secondaryButton: .cancel()
+							)
+						}
 					}
+					Picker("Filter", selection: $filterValueIndex) {
+						ForEach(0 ..< filterValues.count) {
+							Text("\(filterValues[$0])")
+						}
+					}
+					.pickerStyle(SegmentedPickerStyle())
 				}) {
 					List(items, id: \.id) { item in
-						
 						HStack {
 							Text("\(item.name) |")
 							Text("$ \(item.price, specifier: "%.2f") |")
@@ -128,7 +158,7 @@ struct ContentView: View {
 					}
 				}
 			}
-			.navigationTitle("Discounter")
+			.navigationTitle("Bill Name")
 		}
 	}
 }
