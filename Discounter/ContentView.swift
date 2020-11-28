@@ -31,7 +31,7 @@ struct ContentView: View {
 	
 	@State private var items = [Item]()
 	@State private var filterValueIndex = 0
-	@State private var filterValues: [Int] = [1]
+	@State private var filterValues = [Int]()
 	
 	var saleSavingsPerItem: Double {
 		return (Double(itemPrice) ?? 0) / 100 * Double(saleValues[saleValueIndex])
@@ -52,6 +52,7 @@ struct ContentView: View {
 	
 	fileprivate func resetBillData() {
 		items.removeAll()
+		filterValues = []
 		totalPrice = 0.0
 		totalAfterSale = 0.0
 		totalSaved = 0.0
@@ -62,7 +63,7 @@ struct ContentView: View {
 			Form {
 				Section(header: Text("Pick Sale Value")) {
 					Picker("Sale", selection: $saleValueIndex) {
-						ForEach(0 ..< saleValues.count) {
+						ForEach(saleValues.indices) {
 							Text("\(saleValues[$0])%")
 						}
 					}
