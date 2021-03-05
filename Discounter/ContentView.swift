@@ -58,6 +58,34 @@ struct ContentView: View {
 		totalSaved = 0.0
 	}
 	
+	fileprivate func addItem() {
+		guard !itemPrice.isEmpty && itemPrice != " " else { return }
+		
+		totalPrice += Double(itemPrice) ?? 0
+		totalAfterSale += itemPriceAfterSale
+		totalSaved += saleSavingsPerItem
+		if !filterValues.contains(numberOfPeople) {
+			filterValues.append(numberOfPeople)
+			filterValues.sort()
+		}
+		print(filterValues.count)
+		
+		
+		var item = Item()
+		if !itemName.isEmpty {
+			item.name = itemName
+		} else {
+			item.name = "Item " + String(items.count + 1)
+		}
+		
+		item.price = Double(itemPrice) ?? 0
+		item.numberOfPeople = numberOfPeople
+		item.sale = saleValues[saleValueIndex]
+		item.discountedPrice = itemPriceAfterSale
+		
+		items.append(item)
+	}
+	
 	var body: some View {
 		NavigationView {
 			Form {
@@ -84,32 +112,7 @@ struct ContentView: View {
 						Text("Sale Price: $ \(itemPriceAfterSale, specifier: "%.2f")")
 						Spacer()
 						Button("Add ➕") {
-							guard !itemPrice.isEmpty && itemPrice != " " else { return }
-							
-							totalPrice += Double(itemPrice) ?? 0
-							totalAfterSale += itemPriceAfterSale
-							totalSaved += saleSavingsPerItem
-							if !filterValues.contains(numberOfPeople) {
-								filterValues.append(numberOfPeople)
-								filterValues.sort()
-							}
-							print(filterValues.count)
-							
-							
-							var item = Item()
-							if !itemName.isEmpty {
-								item.name = itemName
-							} else {
-								item.name = "Item " + String(items.count + 1)
-							}
-							
-							item.price = Double(itemPrice) ?? 0
-							item.numberOfPeople = numberOfPeople
-							item.sale = saleValues[saleValueIndex]
-							item.discountedPrice = itemPriceAfterSale
-							
-							items.append(item)
-							
+							addItem()
 							resetItemData()
 						}
 					}
@@ -127,7 +130,6 @@ struct ContentView: View {
 						Spacer()
 						Button(action: {
 							showingResetAlert = true
-							
 						}, label: {
 							Text("Reset")
 						})
