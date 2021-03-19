@@ -8,18 +8,38 @@
 import Foundation
 
 class Expenses: ObservableObject {
-	@Published var bills = [Bill]()
+	@Published var bills = [Bill]() {
+		didSet {
+			let encoder = JSONEncoder()
+			if let billsData = try? encoder.encode(bills) {
+				UserDefaults.standard.setValue(billsData, forKey: "Bills")
+			}
+		}
+	}
+	
+	init() {
+		if let billsData = UserDefaults.standard.data(forKey: "Bills") {
+			let decoder = JSONDecoder()
+			if let decodedBills = try? decoder.decode([Bill].self, from: billsData) {
+				bills = decodedBills
+				return
+			}
+		}
+		
+		bills = []
+	}
 }
 
 
-struct Bill {
+struct Bill: Identifiable, Codable {
+	var id = UUID()
 	let name: String
 	let items: [PurchasedItem]
 }
 
 
-struct PurchasedItem {
-	let id = UUID()
+struct PurchasedItem: Identifiable, Codable {
+	var id = UUID()
 	var name = ""
 	var price = 0.0
 	var numberOfPeople = 0

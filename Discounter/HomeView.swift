@@ -8,19 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
+	@ObservedObject var expenses: Expenses
+	@State private var billId = UUID()
 	@State private var showingCreateBillView = false
 	
     var body: some View {
 		NavigationView{
-			Text("Home view, where you find all your bills")
+			List {
+				ForEach(expenses.bills) { bill in
+					HStack {
+						Text(bill.name)
+						Spacer()
+						Text("\(bill.items.count)")
+					}
+				}
+				.onTapGesture {
+					showingCreateBillView.toggle()
+				}
+			}
 			
 			.navigationBarTitle("All Bills")
-			.navigationBarItems(trailing: Button("add", action: {
+			.navigationBarItems(trailing: Button(action: {
 				self.showingCreateBillView.toggle()
-			}))
+			}){
+				Image(systemName: "plus")
+			})
 			
 			.sheet(isPresented: $showingCreateBillView){
-				CreateBillView()
+				AddBillView(expenses: expenses)
 			}
 		}
     }
@@ -28,6 +43,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(expenses: Expenses())
     }
 }

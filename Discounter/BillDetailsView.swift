@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateBillView: View {
+struct BillDetailsView: View {
 	@Environment(\.presentationMode) var presentationMode
 	
     var body: some View {
@@ -22,6 +22,6 @@ struct CreateBillView: View {
 
 struct CreateBillView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateBillView()
+        BillDetailsView()
     }
 }

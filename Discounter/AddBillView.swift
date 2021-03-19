@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct AddBillView: View {
+	@Environment(\.presentationMode) var presentationMode
+	@ObservedObject var expenses: Expenses
+	
+	@State private var billName = ""
 	@State private var itemName = ""
 	@State private var itemPrice = ""
 	@State private var saleValueIndex = 0
@@ -80,20 +84,28 @@ struct ContentView: View {
 	var body: some View {
 		NavigationView {
 			Form {
-				Section(header: Text("Pick Sale Value")) {
-					Picker("Sale", selection: $saleValueIndex) {
-						ForEach(saleValues.indices) {
-							Text("\(saleValues[$0])%")
-						}
-					}
-					.pickerStyle(SegmentedPickerStyle())
+				Section {
+					TextField("Name", text: $billName)
 				}
 				
-				Section {
+				Section(header: Text("Enter New Item Details")) {
+					VStack {
+						HStack {
+							Text("Sale value").font(.footnote)
+							Spacer()
+						}
+						Picker("Sale", selection: $saleValueIndex) {
+							ForEach(saleValues.indices) {
+								Text("\(saleValues[$0])%")
+							}
+						}
+						.pickerStyle(SegmentedPickerStyle())
+					}
+				
 					HStack{
 						TextField("Item name", text: $itemName)
 						Text("💲")
-						TextField("Amount", text: $itemPrice)
+						TextField("Price", text: $itemPrice)
 							.keyboardType(.decimalPad)
 					}
 					Stepper(value: $numberOfPeople, in: 1...10) {
@@ -145,7 +157,8 @@ struct ContentView: View {
 					}
 				}) {
 					List {
-						ForEach (items, id: \.id) { item in
+						// We can discard the id: param since the items type conform to Identifiable protocol
+						ForEach (items) { item in
 							HStack {
 								Text("\(item.name) |")
 								Text("$ \(item.price, specifier: "%.2f") |")
@@ -159,13 +172,18 @@ struct ContentView: View {
 					}
 				}
 			}
-			.navigationTitle("Bill Name")
+			.navigationTitle("Add New Bill")
+			.navigationBarItems(trailing: Button("Save") {
+				let bill = Bill(name: billName, items: items)
+				expenses.bills.append(bill)
+				presentationMode.wrappedValue.dismiss()
+			})
 		}
 	}
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AddBillView(expenses: Expenses())
     }
 }
