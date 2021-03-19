@@ -153,13 +153,18 @@ struct ContentView: View {
 						.pickerStyle(SegmentedPickerStyle())
 					}
 				}) {
-					List(items, id: \.id) { item in
-						HStack {
-							Text("\(item.name) |")
-							Text("$ \(item.price, specifier: "%.2f") |")
-							Text("\(item.sale)% |")
-							Text("$ \(item.discountedPrice, specifier: "%.2f") |")
+					List {
+						ForEach (items, id: \.id) { item in
+							HStack {
+								Text("\(item.name) |")
+								Text("$ \(item.price, specifier: "%.2f") |")
+								Text("\(item.sale)% |")
+								Text("$ \(item.discountedPrice, specifier: "%.2f") |")
+							}
 						}
+						.onDelete(perform: { indexSet in
+							items.remove(atOffsets: indexSet)
+						})
 					}
 				}
 			}
