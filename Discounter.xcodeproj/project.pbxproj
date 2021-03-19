@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE5ADC8A2604AA2C00FCABB9 /* CreateBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC892604AA2C00FCABB9 /* CreateBillView.swift */; };
+		CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */; };
 		CEFBDDE62567344C00DFDFCE /* DiscounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */; };
 		CEFBDDE82567344C00DFDFCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBDDE72567344C00DFDFCE /* ContentView.swift */; };
 		CEFBDDEA2567344E00DFDFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFBDDE92567344E00DFDFCE /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE5ADC892604AA2C00FCABB9 /* CreateBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBillView.swift; sourceTree = "<group>"; };
+		CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CEFBDDE22567344C00DFDFCE /* Discounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscounterApp.swift; sourceTree = "<group>"; };
 		CEFBDDE72567344C00DFDFCE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,7 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */,
+				CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */,
 				CEFBDDE72567344C00DFDFCE /* ContentView.swift */,
+				CE5ADC892604AA2C00FCABB9 /* CreateBillView.swift */,
 				CEFBDDE92567344E00DFDFCE /* Assets.xcassets */,
 				CEFBDDEE2567344E00DFDFCE /* Info.plist */,
 				CEFBDDEB2567344E00DFDFCE /* Preview Content */,
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEFBDDE82567344C00DFDFCE /* ContentView.swift in Sources */,
+				CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */,
+				CE5ADC8A2604AA2C00FCABB9 /* CreateBillView.swift in Sources */,
 				CEFBDDE62567344C00DFDFCE /* DiscounterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
