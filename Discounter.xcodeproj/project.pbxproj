@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE5ADC8A2604AA2C00FCABB9 /* CreateBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC892604AA2C00FCABB9 /* CreateBillView.swift */; };
 		CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */; };
+		CE5ADC932604C52700FCABB9 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC922604C52700FCABB9 /* Expenses.swift */; };
 		CEFBDDE62567344C00DFDFCE /* DiscounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */; };
 		CEFBDDE82567344C00DFDFCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBDDE72567344C00DFDFCE /* ContentView.swift */; };
 		CEFBDDEA2567344E00DFDFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFBDDE92567344E00DFDFCE /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		CE5ADC892604AA2C00FCABB9 /* CreateBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBillView.swift; sourceTree = "<group>"; };
 		CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CE5ADC922604C52700FCABB9 /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
 		CEFBDDE22567344C00DFDFCE /* Discounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscounterApp.swift; sourceTree = "<group>"; };
 		CEFBDDE72567344C00DFDFCE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE5ADC912604C50F00FCABB9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE5ADC922604C52700FCABB9 /* Expenses.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CEFBDDD92567344C00DFDFCE = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		CEFBDDE42567344C00DFDFCE /* Discounter */ = {
 			isa = PBXGroup;
 			children = (
+				CE5ADC912604C50F00FCABB9 /* Model */,
 				CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */,
 				CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */,
 				CEFBDDE72567344C00DFDFCE /* ContentView.swift */,
@@ -144,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5ADC932604C52700FCABB9 /* Expenses.swift in Sources */,
 				CEFBDDE82567344C00DFDFCE /* ContentView.swift in Sources */,
 				CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */,
 				CE5ADC8A2604AA2C00FCABB9 /* CreateBillView.swift in Sources */,

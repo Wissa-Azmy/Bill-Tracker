@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-struct Item {
-	let id = UUID()
-	var name = ""
-	var price = 0.0
-	var numberOfPeople = 0
-	var sale = 0
-	var discountedPrice = 0.0
-}
-
 struct ContentView: View {
 	@State private var itemName = ""
 	@State private var itemPrice = ""
@@ -29,7 +20,7 @@ struct ContentView: View {
 	@State private var totalAfterSale = 0.0
 	@State private var totalSaved = 0.0
 	
-	@State private var items = [Item]()
+	@State private var items = [PurchasedItem]()
 	@State private var filterValueIndex = 0
 	@State private var filterValues = [Int]()
 	
@@ -44,7 +35,7 @@ struct ContentView: View {
 		return (price - price / 100 * saleValue)
 	}
 	
-	fileprivate func resetItemData() {
+	fileprivate func resetFormFields() {
 		itemName = ""
 		itemPrice = ""
 		numberOfPeople = 1
@@ -71,7 +62,7 @@ struct ContentView: View {
 		print(filterValues.count)
 		
 		
-		var item = Item()
+		var item = PurchasedItem()
 		if !itemName.isEmpty {
 			item.name = itemName
 		} else {
@@ -113,7 +104,7 @@ struct ContentView: View {
 						Spacer()
 						Button("Add ➕") {
 							addItem()
-							resetItemData()
+							resetFormFields()
 						}
 					}
 				}
