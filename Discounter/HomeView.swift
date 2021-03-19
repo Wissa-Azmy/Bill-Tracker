@@ -16,10 +16,18 @@ struct HomeView: View {
 		NavigationView{
 			List {
 				ForEach(expenses.bills) { bill in
-					HStack {
-						Text(bill.name)
-						Spacer()
-						Text("\(bill.items.count)")
+					VStack {
+						HStack {
+							Text(bill.name)
+								.font(.headline)
+							Spacer()
+							Text("Paid: \(bill.totalAfterSale, specifier: "%.2f")")
+						}
+						HStack {
+							Text("Items: \(bill.items.count)")
+							Spacer()
+							Text("Saved: \(bill.amountSaved, specifier: "%.2f")")
+						}
 					}
 				}
 				.onTapGesture {

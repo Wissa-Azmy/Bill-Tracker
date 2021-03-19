@@ -22,7 +22,7 @@ struct AddBillView: View {
 	
 	@State private var totalPrice = 0.0
 	@State private var totalAfterSale = 0.0
-	@State private var totalSaved = 0.0
+	@State private var amountSaved = 0.0
 	
 	@State private var items = [PurchasedItem]()
 	@State private var filterValueIndex = 0
@@ -50,7 +50,7 @@ struct AddBillView: View {
 		filterValues = []
 		totalPrice = 0.0
 		totalAfterSale = 0.0
-		totalSaved = 0.0
+		amountSaved = 0.0
 	}
 	
 	fileprivate func addItem() {
@@ -58,7 +58,7 @@ struct AddBillView: View {
 		
 		totalPrice += Double(itemPrice) ?? 0
 		totalAfterSale += itemPriceAfterSale
-		totalSaved += saleSavingsPerItem
+		amountSaved += saleSavingsPerItem
 		if !filterValues.contains(numberOfPeople) {
 			filterValues.append(numberOfPeople)
 			filterValues.sort()
@@ -124,7 +124,7 @@ struct AddBillView: View {
 				Section(header: Text("Total")) {
 					Text("Before Sale: $ \(totalPrice, specifier: "%.2f")")
 					Text("After Sale: $ \(totalAfterSale, specifier: "%.2f")")
-					Text("You Save: $ \(totalSaved, specifier: "%.2f")")
+					Text("You Save: $ \(amountSaved, specifier: "%.2f")")
 				}
 				
 				Section(header: VStack {
@@ -174,7 +174,13 @@ struct AddBillView: View {
 			}
 			.navigationTitle("Add New Bill")
 			.navigationBarItems(trailing: Button("Save") {
-				let bill = Bill(name: billName, items: items)
+				let bill = Bill(
+					name: billName,
+					totalPrice: totalPrice,
+					totalAfterSale: totalAfterSale,
+					amountSaved: amountSaved,
+					items: items
+				)
 				expenses.bills.append(bill)
 				presentationMode.wrappedValue.dismiss()
 			})

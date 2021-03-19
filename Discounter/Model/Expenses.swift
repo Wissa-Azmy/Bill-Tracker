@@ -34,6 +34,9 @@ class Expenses: ObservableObject {
 struct Bill: Identifiable, Codable {
 	var id = UUID()
 	let name: String
+	let totalPrice: Double
+	let totalAfterSale: Double
+	let amountSaved: Double
 	let items: [PurchasedItem]
 }
 
