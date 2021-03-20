@@ -22,13 +22,13 @@ struct HomeView: View {
 								Text(bill.name)
 									.font(.headline)
 								Spacer()
-								Text("Paid: \(bill.totalAfterSale, specifier: "%.2f")")
+								Text("\(Localization.Home.paid) \(bill.totalAfterSale, specifier: "%.2f")")
 							}
 							HStack {
-								Text("Items: \(bill.items.count)")
+								Text("\(Localization.Home.items) \(bill.items.count)")
 								Spacer()
 								if bill.amountSaved > 0 {
-									Text("Saved: \(bill.amountSaved, specifier: "%.2f")")
+									Text("\(Localization.Home.saved) \(bill.amountSaved, specifier: "%.2f")")
 								}
 							}
 						}
@@ -36,7 +36,7 @@ struct HomeView: View {
 				}
 			}
 			
-			.navigationBarTitle("All Bills")
+			.navigationBarTitle(Localization.Home.allBills)
 			.navigationBarItems(trailing: Button(action: {
 				self.showingCreateBillView.toggle()
 			}){

@@ -70,7 +70,7 @@ struct AddBillView: View {
 		if !itemName.isEmpty {
 			item.name = itemName
 		} else {
-			item.name = "Item " + String(items.count + 1)
+			item.name = "\(Localization.AddBill.item) " + String(items.count + 1)
 		}
 		
 		item.price = Double(itemPrice) ?? 0
@@ -85,16 +85,16 @@ struct AddBillView: View {
 		NavigationView {
 			Form {
 				Section {
-					TextField("Name", text: $billName)
+					TextField(Localization.AddBill.name, text: $billName)
 				}
 				
-				Section(header: Text("Enter New Item Details")) {
+				Section(header: Text(Localization.AddBill.itemDetails)) {
 					VStack {
 						HStack {
-							Text("Sale value").font(.footnote)
+							Text(Localization.AddBill.saleValue).font(.footnote)
 							Spacer()
 						}
-						Picker("Sale", selection: $saleValueIndex) {
+						Picker(Localization.AddBill.sale, selection: $saleValueIndex) {
 							ForEach(saleValues.indices) {
 								Text("\(saleValues[$0])%")
 							}
@@ -103,43 +103,43 @@ struct AddBillView: View {
 					}
 				
 					HStack{
-						TextField("Item name", text: $itemName)
+						TextField(Localization.AddBill.itemName, text: $itemName)
 						Text("💲")
-						TextField("Price", text: $itemPrice)
+						TextField(Localization.AddBill.price, text: $itemPrice)
 							.keyboardType(.decimalPad)
 					}
 					Stepper(value: $numberOfPeople, in: 1...10) {
-						Text("People: \(numberOfPeople)")
+						Text("\(Localization.AddBill.people) \(numberOfPeople)")
 					}
 					HStack {
-						Text("Sale Price: $ \(itemPriceAfterSale, specifier: "%.2f")")
+						Text("\(Localization.AddBill.salePrice) \(itemPriceAfterSale, specifier: "%.2f")")
 						Spacer()
-						Button("Add ➕") {
+						Button(Localization.AddBill.add) {
 							addItem()
 							resetFormFields()
 						}
 					}
 				}
 				
-				Section(header: Text("Total")) {
-					Text("Before Sale: $ \(totalPrice, specifier: "%.2f")")
-					Text("After Sale: $ \(totalAfterSale, specifier: "%.2f")")
-					Text("You Save: $ \(amountSaved, specifier: "%.2f")")
+				Section(header: Text(Localization.AddBill.total)) {
+					Text("\(Localization.AddBill.beforeSale) \(totalPrice, specifier: "%.2f")")
+					Text("\(Localization.AddBill.afterSale) \(totalAfterSale, specifier: "%.2f")")
+					Text("\(Localization.AddBill.youSave) \(amountSaved, specifier: "%.2f")")
 				}
 				
 				Section(header: VStack {
 					HStack {
-						Text("Items: \(items.count) (filtered by no. of people)")
+						Text("\(Localization.General.items) \(items.count) \(Localization.AddBill.filteredByPeople)")
 						Spacer()
 						Button(action: {
 							showingResetAlert = true
 						}, label: {
-							Text("Reset")
+							Text(Localization.AddBill.reset)
 						})
 						.alert(isPresented: $showingResetAlert) {
 							Alert(
-								title: Text("Careful!"),
-								message: Text("This will delete all your items"),
+								title: Text(Localization.AddBill.careful),
+								message: Text(Localization.AddBill.deleteAllItems),
 								primaryButton: .default(Text("OK")){
 									resetBillData()
 								},
@@ -148,7 +148,7 @@ struct AddBillView: View {
 						}
 					}
 					if filterValues.count > 1 {
-						Picker("Filter", selection: $filterValueIndex) {
+						Picker(Localization.AddBill.filter, selection: $filterValueIndex) {
 							ForEach(filterValues.indices, id: \.self) {
 								Text("\(filterValues[$0])")
 							}
@@ -172,8 +172,8 @@ struct AddBillView: View {
 					}
 				}
 			}
-			.navigationTitle("Add New Bill")
-			.navigationBarItems(trailing: Button("Save") {
+			.navigationTitle(Localization.AddBill.addBill)
+			.navigationBarItems(trailing: Button(Localization.General.save) {
 				let bill = Bill(
 					name: billName,
 					totalPrice: totalPrice,
