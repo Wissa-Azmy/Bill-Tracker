@@ -39,6 +39,10 @@ struct AddBillView: View {
 		return (price - price / 100 * saleValue)
 	}
 	
+	private var isItemFormDisabled: Bool {
+		itemPrice.isEmpty || itemPrice == " "
+	}
+	
 	fileprivate func resetFormFields() {
 		itemName = ""
 		itemPrice = ""
@@ -54,8 +58,6 @@ struct AddBillView: View {
 	}
 	
 	fileprivate func addItem() {
-		guard !itemPrice.isEmpty && itemPrice != " " else { return }
-		
 		totalPrice += Double(itemPrice) ?? 0
 		totalAfterSale += itemPriceAfterSale
 		amountSaved += saleSavingsPerItem
@@ -63,8 +65,6 @@ struct AddBillView: View {
 			filterValues.append(numberOfPeople)
 			filterValues.sort()
 		}
-		print(filterValues.count)
-		
 		
 		var item = PurchasedItem()
 		if !itemName.isEmpty {
@@ -84,10 +84,11 @@ struct AddBillView: View {
 	var body: some View {
 		NavigationView {
 			Form {
+				// Bill Name Field
 				Section {
 					TextField(Localization.AddBill.name, text: $billName)
 				}
-				
+				// MARK: - Item fields FORM
 				Section(header: Text(Localization.AddBill.itemDetails)) {
 					VStack {
 						HStack {
@@ -118,15 +119,16 @@ struct AddBillView: View {
 							addItem()
 							resetFormFields()
 						}
+						.disabled(isItemFormDisabled)
 					}
 				}
-				
+				// Stats View
 				Section(header: Text(Localization.AddBill.total)) {
 					Text("\(Localization.AddBill.beforeSale) \(totalPrice, specifier: "%.2f")")
 					Text("\(Localization.AddBill.afterSale) \(totalAfterSale, specifier: "%.2f")")
 					Text("\(Localization.AddBill.youSave) \(amountSaved, specifier: "%.2f")")
 				}
-				
+				// Filter items
 				Section(header: VStack {
 					HStack {
 						Text("\(Localization.General.items) \(items.count) \(Localization.AddBill.filteredByPeople)")
@@ -156,6 +158,7 @@ struct AddBillView: View {
 						.pickerStyle(SegmentedPickerStyle())
 					}
 				}) {
+					// MARK: - List of Items
 					List {
 						// We can discard the id: param since the items type conform to Identifiable protocol
 						ForEach (items) { item in

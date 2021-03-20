@@ -11,7 +11,6 @@ struct BillDetailsView: View {
 	let bill: Bill
 	
 	var body: some View {
-		
 			Form {
 				Section(header: Text(Localization.AddBill.total)) {
 					Text("\(Localization.AddBill.beforeSale) \(bill.totalPrice, specifier: "%.2f")")
@@ -42,7 +41,6 @@ struct BillDetailsView: View {
 				}
 			}
 			.navigationBarTitle(bill.name)
-		
 	}
 }
 
