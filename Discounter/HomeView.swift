@@ -16,22 +16,23 @@ struct HomeView: View {
 		NavigationView{
 			List {
 				ForEach(expenses.bills) { bill in
-					VStack {
-						HStack {
-							Text(bill.name)
-								.font(.headline)
-							Spacer()
-							Text("Paid: \(bill.totalAfterSale, specifier: "%.2f")")
-						}
-						HStack {
-							Text("Items: \(bill.items.count)")
-							Spacer()
-							Text("Saved: \(bill.amountSaved, specifier: "%.2f")")
+					NavigationLink(destination: Text("Details")) {
+						VStack {
+							HStack {
+								Text(bill.name)
+									.font(.headline)
+								Spacer()
+								Text("Paid: \(bill.totalAfterSale, specifier: "%.2f")")
+							}
+							HStack {
+								Text("Items: \(bill.items.count)")
+								Spacer()
+								if bill.amountSaved > 0 {
+									Text("Saved: \(bill.amountSaved, specifier: "%.2f")")
+								}
+							}
 						}
 					}
-				}
-				.onTapGesture {
-					showingCreateBillView.toggle()
 				}
 			}
 			
