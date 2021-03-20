@@ -16,7 +16,7 @@ struct HomeView: View {
 		NavigationView{
 			List {
 				ForEach(expenses.bills) { bill in
-					NavigationLink(destination: Text("Details")) {
+					NavigationLink(destination: BillDetailsView(bill: bill)) {
 						VStack {
 							HStack {
 								Text(bill.name)
@@ -25,7 +25,7 @@ struct HomeView: View {
 								Text("\(Localization.Home.paid) \(bill.totalAfterSale, specifier: "%.2f")")
 							}
 							HStack {
-								Text("\(Localization.Home.items) \(bill.items.count)")
+								Text("\(Localization.General.items) \(bill.items.count)")
 								Spacer()
 								if bill.amountSaved > 0 {
 									Text("\(Localization.Home.saved) \(bill.amountSaved, specifier: "%.2f")")
