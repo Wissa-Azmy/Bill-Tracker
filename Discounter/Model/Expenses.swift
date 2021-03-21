@@ -10,26 +10,76 @@ import Foundation
 class Expenses: ObservableObject {
 	@Published var bills = [Bill]() {
 		didSet {
-			let encoder = JSONEncoder()
-			if let billsData = try? encoder.encode(bills) {
-				UserDefaults.standard.setValue(billsData, forKey: "Bills")
-			}
+			saveDataOf(bills, forKey: "Bills")
+		}
+	}
+	
+	@Published var creditors = [Creditor]() {
+		didSet {
+			saveDataOf(creditors, forKey: "Creditors")
+		}
+	}
+	
+	@Published var debtors = [Debtor]() {
+		didSet {
+			saveDataOf(debtors, forKey: "Debtors")
 		}
 	}
 	
 	init() {
-		if let billsData = UserDefaults.standard.data(forKey: "Bills") {
+		bills = loadDataFor(key: "Bills") ?? []
+		creditors = loadDataFor(key: "Creditors") ?? []
+		debtors = loadDataFor(key: "Debtors") ?? []
+	}
+	
+	// MARK: - Coding & Loading Data
+	private func loadDataFor<T: Codable>(key: String) -> T? {
+		if let data = UserDefaults.standard.data(forKey: key) {
 			let decoder = JSONDecoder()
-			if let decodedBills = try? decoder.decode([Bill].self, from: billsData) {
-				bills = decodedBills
-				return
+			if let decodedItems = try? decoder.decode(T.self, from: data) {
+				return decodedItems
 			}
 		}
 		
-		bills = []
+		return nil
+	}
+	
+	private func saveDataOf<T: Codable>(_ data: T, forKey key: String) {
+		if let encodedData = try? JSONEncoder().encode(data) {
+			UserDefaults.standard.setValue(encodedData, forKey: key)
+		}
 	}
 }
 
+struct Debtor: Identifiable, Codable {
+	let id = UUID()
+	let date = Date()
+	let name: String
+	let amount: Double
+	let payments: [Payment]
+	
+	var remainingAmount: Double {
+		amount - payments.reduce(0) { $0 + $1.amount }
+	}
+}
+
+struct Creditor: Identifiable, Codable {
+	let id = UUID()
+	let date = Date()
+	let name: String
+	let amount: Double
+	let payments: [Payment]
+	
+	var remainingAmount: Double {
+		amount - payments.reduce(0) { $0 + $1.amount }
+	}
+}
+
+struct Payment: Identifiable, Codable {
+	let id = UUID()
+	let date = Date()
+	let amount: Double
+}
 
 struct Bill: Identifiable, Codable {
 	let id = UUID()
