@@ -9,9 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
 	@ObservedObject var expenses: Expenses
-	@State private var billId = UUID()
 	@State private var showingCreateBillView = false
-	@State private var expensesSections = ["Bills", "Creditors", "Debtors"]
+	@State private var expensesSections = ["Creditors", "Debtors", "Bills"]
 	@State private var filterSelectionIndex = 0
 	private var title: String {
 		expensesSections[filterSelectionIndex]
