@@ -27,26 +27,15 @@ struct HomeView: View {
 				.pickerStyle(SegmentedPickerStyle())
 				.padding()
 				
-				List {
-					ForEach(expenses.bills) { bill in
-						NavigationLink(destination: BillDetailsView(bill: bill)) {
-							VStack {
-								HStack {
-									Text(bill.name)
-										.font(.headline)
-									Spacer()
-									Text("\(Localization.Home.paid) \(bill.totalAfterSale, specifier: "%.2f")")
-								}
-								HStack {
-									Text("\(Localization.General.items) \(bill.items.count)")
-									Spacer()
-									if bill.amountSaved > 0 {
-										Text("\(Localization.Home.saved) \(bill.amountSaved, specifier: "%.2f")")
-									}
-								}
-							}
-						}
-					}
+				switch filterSelectionIndex {
+					case 0:
+						CreditorsListView(creditors: expenses.creditors)
+					case 1:
+						DebtorsListView(debtors: expenses.debtors)
+					case 2:
+						BillsListView(bills: expenses.bills)
+					default:
+						Text("Placeholder")
 				}
 			}
 			
@@ -58,7 +47,17 @@ struct HomeView: View {
 			})
 			
 			.sheet(isPresented: $showingCreateBillView){
-				AddBillView(expenses: expenses)
+				switch filterSelectionIndex {
+					case 0:
+						AddCreditorView(expenses: expenses)
+					case 1:
+						AddDebtorView(expenses: expenses)
+					case 2:
+						AddBillView(expenses: expenses)
+					default:
+						Text("Placeholder")
+				}
+				
 			}
 		}
     }
