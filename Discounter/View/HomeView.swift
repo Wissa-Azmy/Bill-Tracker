@@ -57,7 +57,6 @@ struct HomeView: View {
 					default:
 						Text("Placeholder")
 				}
-				
 			}
 		}
     }

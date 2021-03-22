@@ -68,12 +68,20 @@
 				CE5ADC9F2608ED3B00FCABB9 /* BillsListView.swift */,
 				CE5ADCA22608EE5400FCABB9 /* CreditorsListView.swift */,
 				CE5ADCA52608EE5E00FCABB9 /* DebtorsListView.swift */,
-				CEFBDDE72567344C00DFDFCE /* AddBillView.swift */,
+				CE5ADCB42609003400FCABB9 /* Forms */,
 				CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE5ADCB42609003400FCABB9 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				CEFBDDE72567344C00DFDFCE /* AddBillView.swift */,
 				CE5ADCAE2608FDBC00FCABB9 /* AddCreditorView.swift */,
 				CE5ADCB12608FDD000FCABB9 /* AddDebtorView.swift */,
 			);
-			path = View;
+			path = Forms;
 			sourceTree = "<group>";
 		};
 		CEFBDDD92567344C00DFDFCE = {
