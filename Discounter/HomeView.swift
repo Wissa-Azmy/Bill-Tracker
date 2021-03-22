@@ -13,7 +13,9 @@ struct HomeView: View {
 	@State private var showingCreateBillView = false
 	@State private var expensesSections = ["Bills", "Creditors", "Debtors"]
 	@State private var filterSelectionIndex = 0
-
+	private var title: String {
+		expensesSections[filterSelectionIndex]
+	}
 	
     var body: some View {
 		NavigationView{
@@ -49,7 +51,7 @@ struct HomeView: View {
 				}
 			}
 			
-			.navigationBarTitle(Localization.Home.allBills)
+			.navigationBarTitle(title)
 			.navigationBarItems(trailing: Button(action: {
 				self.showingCreateBillView.toggle()
 			}){
