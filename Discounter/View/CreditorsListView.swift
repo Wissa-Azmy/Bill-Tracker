@@ -37,13 +37,7 @@ struct CreditorsListView: View {
 				})
 			}
 		} else {
-			VStack{
-				Spacer()
-				Image("wallet")
-					.resizable()
-					.scaledToFit()
-				Spacer()
-			}
+			PlaceholderImage(name: "wallet")
 		}
     }
 }
