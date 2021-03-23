@@ -56,6 +56,7 @@ struct Debtor: Identifiable, Codable {
 	let date = Date()
 	let name: String
 	let amount: Double
+	let interestRate: Double
 	let payments: [Payment]
 	
 	var remainingAmount: Double {
@@ -68,6 +69,7 @@ struct Creditor: Identifiable, Codable {
 	let date = Date()
 	let name: String
 	let amount: Double
+	let interestRate: Double
 	let payments: [Payment]
 	
 	var remainingAmount: Double {
