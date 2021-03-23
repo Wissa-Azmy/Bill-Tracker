@@ -11,30 +11,35 @@ struct DebtorsListView: View {
 	@Binding var debtors: [Debtor]
 	
 	var body: some View {
-		List {
-			ForEach(debtors) { debtor in
-				NavigationLink(destination: Text("Creditor Details")) {
-					VStack {
-						HStack {
-							Text(debtor.name)
-								.font(.headline)
-							Spacer()
-							Text("Original Amount: \(debtor.amount, specifier: "%.2f")")
-						}
-						HStack {
-							Text("Payments count: \(debtor.payments.count)")
-							Spacer()
-							if debtor.payments.count > 0 {
-								Text("Remaining Amount: \(debtor.remainingAmount, specifier: "%.2f")")
+		if !debtors.isEmpty {
+			List {
+				ForEach(debtors) { debtor in
+					NavigationLink(destination: Text("Creditor Details")) {
+						VStack {
+							HStack {
+								Text(debtor.name)
+									.font(.headline)
+								Spacer()
+								Text("Original Amount: \(debtor.amount, specifier: "%.2f")")
+							}
+							HStack {
+								Text("Payments count: \(debtor.payments.count)")
+								Spacer()
+								if debtor.payments.count > 0 {
+									Text("Remaining Amount: \(debtor.remainingAmount, specifier: "%.2f")")
+								}
 							}
 						}
 					}
 				}
+				.onDelete(perform: { indexSet in
+					debtors.remove(atOffsets: indexSet)
+				})
 			}
-			.onDelete(perform: { indexSet in
-				debtors.remove(atOffsets: indexSet)
-			})
+		} else {
+			PlaceholderImage(name: "money bag")
 		}
+		
 	}
 }
 
