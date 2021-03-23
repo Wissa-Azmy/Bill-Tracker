@@ -31,6 +31,9 @@ struct BillsListView: View {
 					}
 				}
 			}
+			.onDelete(perform: { indexSet in
+				bills.remove(atOffsets: indexSet)
+			})
 		}
 	}
 }

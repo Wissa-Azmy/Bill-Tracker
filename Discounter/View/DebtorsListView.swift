@@ -31,6 +31,9 @@ struct DebtorsListView: View {
 					}
 				}
 			}
+			.onDelete(perform: { indexSet in
+				debtors.remove(atOffsets: indexSet)
+			})
 		}
 	}
 }
