@@ -11,64 +11,36 @@ struct AddCreditorView: View {
 	@Environment(\.presentationMode) var presentationMode
 	@ObservedObject var expenses: Expenses
 	
-	@State private var billName = ""
-	@State private var itemName = ""
-	@State private var itemPrice = ""
+	@State private var creditorName = ""
+	@State private var creditAmount = ""
 	@State private var interestRate = 0
+	@State private var paymentAmount = ""
 	@State private var showingResetAlert = false
 	
-	@State private var totalPrice = 0.0
-	@State private var totalAfterSale = 0.0
-	@State private var amountSaved = 0.0
+	@State private var originalAmount = 0.0
+	@State private var paidAmount = 0.0
+	@State private var remainingAmount = 0.0
 	
-	@State private var items = [PurchasedItem]()
-	@State private var filterValueIndex = 0
-	@State private var filterValues = [Int]()
+	@State private var payments = [Payment]()
 	
 	var itemPriceAfterSale: Double {
-		let price = Double(itemPrice) ?? 0
+		let price = Double(paymentAmount) ?? 0
 		
 		return (price - price / 100 * 5)
 	}
 	
 	private var isItemFormDisabled: Bool {
-		itemPrice.isEmpty || itemPrice == " "
+		paymentAmount.isEmpty || paymentAmount == " " || Int(paymentAmount) ?? 0 < 1
 	}
 	
 	fileprivate func resetFormFields() {
-		itemName = ""
-		itemPrice = ""
-		interestRate = 1
+		paymentAmount = ""
 	}
 	
-	fileprivate func resetBillData() {
-		items.removeAll()
-		filterValues = []
-		totalPrice = 0.0
-		totalAfterSale = 0.0
-		amountSaved = 0.0
-	}
-	
-	fileprivate func addItem() {
-		totalPrice += Double(itemPrice) ?? 0
-		totalAfterSale += itemPriceAfterSale
-		if !filterValues.contains(interestRate) {
-			filterValues.append(interestRate)
-			filterValues.sort()
-		}
+	fileprivate func addPayment() {
+		let payment = Payment(amount: Double(paymentAmount) ?? 0)
 		
-		var item = PurchasedItem()
-		if !itemName.isEmpty {
-			item.name = itemName
-		} else {
-			item.name = "\(Localization.AddBill.item) " + String(items.count + 1)
-		}
-		
-		item.price = Double(itemPrice) ?? 0
-		item.numberOfPeople = interestRate
-		item.discountedPrice = itemPriceAfterSale
-		
-		items.append(item)
+		payments.append(payment)
 	}
 	
 	var body: some View {
@@ -77,58 +49,62 @@ struct AddCreditorView: View {
 				// MARK: - Item fields FORM
 				Section {
 					HStack{
-						TextField("Creditor Name", text: $itemName)
+						TextField("Creditor Name", text: $creditorName)
 						Text("💲")
-						TextField("Amount", text: $itemPrice)
+						TextField("Credit Amount", text: $creditAmount)
 							.keyboardType(.decimalPad)
 					}
 					
 					Stepper(value: $interestRate, in: 0...15) {
 						Text("Interest: \(interestRate) %")
 					}
-					
-					Button(Localization.AddBill.add) {
-						addItem()
-						resetFormFields()
-					}
-					.disabled(isItemFormDisabled)
-					
 				}
+				
+				Section(header: Text("Record payments for this creditor")) {
+					HStack {
+						TextField("Amount", text: $paymentAmount)
+							.keyboardType(.decimalPad)
+						Button(Localization.AddBill.add) {
+							addPayment()
+							resetFormFields()
+						}
+						.disabled(isItemFormDisabled)
+					}
+				}
+				
 				// Stats View
-				Section(header: Text(Localization.AddBill.total)) {
-					Text("\(Localization.AddBill.beforeSale) \(totalPrice, specifier: "%.2f")")
-					Text("\(Localization.AddBill.afterSale) \(totalAfterSale, specifier: "%.2f")")
-					Text("\(Localization.AddBill.youSave) \(amountSaved, specifier: "%.2f")")
+				Section(header: Text("Stats")) {
+					Text("Original Amount: \(originalAmount, specifier: "%.2f")")
+					Text("Paid: \(paidAmount, specifier: "%.2f")")
+					Text("Remaining: \(remainingAmount, specifier: "%.2f")")
 				}
 				// Filter items
-				Section(header: Text("Items")) {
+				Section(header: Text("Payments: \(payments.count)")) {
 					// MARK: - List of Items
 					List {
 						// We can discard the id: param since the items type conform to Identifiable protocol
-						ForEach (items) { item in
+						ForEach (payments) { payment in
 							HStack {
-								Text("\(item.name) |")
-								Text("$ \(item.price, specifier: "%.2f") |")
-								Text("\(item.sale)% |")
-								Text("$ \(item.discountedPrice, specifier: "%.2f") |")
+								Text("$ \(payment.amount, specifier: "%.2f") |")
+								Text("\(payment.date)% |")
 							}
 						}
 						.onDelete(perform: { indexSet in
-							items.remove(atOffsets: indexSet)
+							payments.remove(atOffsets: indexSet)
 						})
 					}
 				}
 			}
 			.navigationTitle("Add New Creditor")
 			.navigationBarItems(trailing: Button(Localization.General.save) {
-				let bill = Bill(
-					name: billName,
-					totalPrice: totalPrice,
-					totalAfterSale: totalAfterSale,
-					amountSaved: amountSaved,
-					items: items
+				let creditor = Creditor(
+					name: creditorName,
+					amount: Double(creditAmount) ?? 0,
+					interestRate: Double(interestRate),
+					payments: payments
 				)
-				expenses.bills.append(bill)
+				
+				expenses.creditors.append(creditor)
 				presentationMode.wrappedValue.dismiss()
 			})
 		}
