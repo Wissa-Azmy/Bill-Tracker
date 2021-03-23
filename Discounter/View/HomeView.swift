@@ -29,11 +29,11 @@ struct HomeView: View {
 				
 				switch filterSelectionIndex {
 					case 0:
-						CreditorsListView(creditors: expenses.creditors)
+						CreditorsListView(creditors: $expenses.creditors)
 					case 1:
-						DebtorsListView(debtors: expenses.debtors)
+						DebtorsListView(debtors: $expenses.debtors)
 					case 2:
-						BillsListView(bills: expenses.bills)
+						BillsListView(bills: $expenses.bills)
 					default:
 						Text("Placeholder")
 				}

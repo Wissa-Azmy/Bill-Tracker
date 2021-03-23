@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DebtorsListView: View {
-	@State var debtors: [Debtor]
+	@Binding var debtors: [Debtor]
 	
 	var body: some View {
 		List {
@@ -37,6 +37,6 @@ struct DebtorsListView: View {
 
 struct DebtorsList_Previews: PreviewProvider {
     static var previews: some View {
-        DebtorsListView(debtors: [Debtor]())
+		DebtorsListView(debtors: .constant([Debtor]()))
     }
 }
