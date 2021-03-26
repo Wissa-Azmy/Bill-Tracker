@@ -9,11 +9,17 @@ import SwiftUI
 
 struct HomeView: View {
 	@ObservedObject var expenses: Expenses
-	@State private var showingCreateBillView = false
+	@State private var showingAddNewItemSheet = false
 	@State private var expensesSections = ["Creditors", "Debtors", "Bills"]
 	@State private var filterSelectionIndex = 0
+	@State private var addNewItemSectionIndex = 0
 	private var title: String {
 		expensesSections[filterSelectionIndex]
+	}
+	
+	private func showAddNewItemSheet(for section: Int) {
+		addNewItemSectionIndex = section
+		showingAddNewItemSheet.toggle()
 	}
 	
     var body: some View {
@@ -38,16 +44,22 @@ struct HomeView: View {
 						Text("Placeholder")
 				}
 			}
+			.toolbar {
+				ToolbarItem(placement: .primaryAction) {
+					Menu {
+						Button("Add New Creditor") { showAddNewItemSheet(for: 0) }
+						Button("Add New Debtor") { showAddNewItemSheet(for: 1) }
+						Button("Add New Bill") { showAddNewItemSheet(for: 2) }
+					}
+					label: {
+						Image(systemName: "plus")
+					}
+				}
+			}
 			
 			.navigationBarTitle(title)
-			.navigationBarItems(trailing: Button(action: {
-				self.showingCreateBillView.toggle()
-			}){
-				Image(systemName: "plus")
-			})
-			
-			.sheet(isPresented: $showingCreateBillView){
-				switch filterSelectionIndex {
+			.sheet(isPresented: $showingAddNewItemSheet){
+				switch addNewItemSectionIndex {
 					case 0:
 						AddCreditorView(expenses: expenses)
 					case 1:

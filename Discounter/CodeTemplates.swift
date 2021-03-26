@@ -75,4 +75,13 @@ URLSession.shared.dataTask(with: request) { data, response, error in
 		return
 	}
 }.resume()
+
+
+//			.navigationBarItems(trailing: Button(action: {
+//				self.showingCreateBillView.toggle()
+//			}){
+//				Image(systemName: "plus")
+//			})
+
+
 */

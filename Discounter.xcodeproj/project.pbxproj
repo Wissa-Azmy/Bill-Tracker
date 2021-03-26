@@ -66,12 +66,12 @@
 		CE5ADCAB2608EEC400FCABB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE5ADCB42609003400FCABB9 /* Forms */,
 				CE5ADCB7260A2BBE00FCABB9 /* Custom Views */,
 				CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */,
 				CE5ADC9F2608ED3B00FCABB9 /* BillsListView.swift */,
 				CE5ADCA22608EE5400FCABB9 /* CreditorsListView.swift */,
 				CE5ADCA52608EE5E00FCABB9 /* DebtorsListView.swift */,
-				CE5ADCB42609003400FCABB9 /* Forms */,
 				CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */,
 			);
 			path = View;
