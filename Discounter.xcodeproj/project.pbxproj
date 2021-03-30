@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE344F602613249900ADB662 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344F5F2613249900ADB662 /* RatingView.swift */; };
+		CE344F722613954A00ADB662 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344F712613954A00ADB662 /* DetailsView.swift */; };
 		CE5ADC8A2604AA2C00FCABB9 /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */; };
 		CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */; };
 		CE5ADC932604C52700FCABB9 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC922604C52700FCABB9 /* Expenses.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		CE344F5F2613249900ADB662 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		CE344F712613954A00ADB662 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
 		CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CE5ADC922604C52700FCABB9 /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				CE5ADCA22608EE5400FCABB9 /* CreditorsListView.swift */,
 				CE5ADCA52608EE5E00FCABB9 /* DebtorsListView.swift */,
 				CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */,
+				CE344F712613954A00ADB662 /* DetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				CE5ADCAF2608FDBC00FCABB9 /* AddCreditorView.swift in Sources */,
 				CEFBDDE62567344C00DFDFCE /* DiscounterApp.swift in Sources */,
 				CE5ADCB22608FDD000FCABB9 /* AddDebtorView.swift in Sources */,
+				CE344F722613954A00ADB662 /* DetailsView.swift in Sources */,
 				CE5ADCB9260A2BD300FCABB9 /* PlaceholderImage.swift in Sources */,
 				CE5ADCA62608EE5E00FCABB9 /* DebtorsListView.swift in Sources */,
 				CE344F602613249900ADB662 /* RatingView.swift in Sources */,
