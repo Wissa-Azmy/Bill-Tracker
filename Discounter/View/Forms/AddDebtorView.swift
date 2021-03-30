@@ -14,6 +14,7 @@ struct AddDebtorView: View {
 	@State private var creditorName = ""
 	@State private var creditAmount = ""
 	@State private var interestRate = 0
+	@State private var rating = 0
 	@State private var paymentAmount = ""
 	@State private var showingResetAlert = false
 	
@@ -43,8 +44,6 @@ struct AddDebtorView: View {
 		payments.append(payment)
 	}
 	
-	@State private var rating = 3
-	
 	var body: some View {
 		NavigationView {
 			Form {
@@ -62,13 +61,13 @@ struct AddDebtorView: View {
 					}
 					
 					HStack {
-						Text("Rate Debtor:")
+						Text("Rating:")
 						Spacer()
 						RatingView(rating: $rating)
 					}
 				}
 				
-				Section(header: Text("Record payments for this creditor")) {
+				Section(header: Text("Record payments for this Debtor")) {
 					HStack {
 						TextField("Amount", text: $paymentAmount)
 							.keyboardType(.decimalPad)
