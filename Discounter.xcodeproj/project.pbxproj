@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE344F602613249900ADB662 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344F5F2613249900ADB662 /* RatingView.swift */; };
 		CE5ADC8A2604AA2C00FCABB9 /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */; };
 		CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */; };
 		CE5ADC932604C52700FCABB9 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC922604C52700FCABB9 /* Expenses.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE344F5F2613249900ADB662 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
 		CE5ADC8C2604AA6800FCABB9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CE5ADC922604C52700FCABB9 /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5ADCB8260A2BD300FCABB9 /* PlaceholderImage.swift */,
+				CE344F5F2613249900ADB662 /* RatingView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				CE5ADCB22608FDD000FCABB9 /* AddDebtorView.swift in Sources */,
 				CE5ADCB9260A2BD300FCABB9 /* PlaceholderImage.swift in Sources */,
 				CE5ADCA62608EE5E00FCABB9 /* DebtorsListView.swift in Sources */,
+				CE344F602613249900ADB662 /* RatingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
