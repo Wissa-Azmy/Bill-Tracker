@@ -84,4 +84,19 @@ URLSession.shared.dataTask(with: request) { data, response, error in
 //			})
 
 
+.navigationBarItems(trailing: Button(action: {
+	elf.showingDeleteAlert = true
+}) {
+	Image(systemName: "trash")
+})
+
+.alert(isPresented: $showingDeleteAlert) {
+	Alert(
+		title: Text("Delete book"),
+		message: Text("Are you sure?"),
+		primaryButton: .destructive(Text("Delete")) { self.deleteBook() },
+		secondaryButton: .cancel()
+	)
+}
+
 */

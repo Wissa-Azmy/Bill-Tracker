@@ -6,105 +6,57 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-class Expenses: ObservableObject {
+class Expenses: ObservableObject, Codable {
+	@DocumentID var id: String?
+	var userId: String?
+	
 	@Published var bills = [Bill]() {
 		didSet {
-			saveDataOf(bills, forKey: "Bills")
+			LocalDataSource.saveDataOf(bills, forKey: "Bills")
 		}
 	}
 	
 	@Published var creditors = [Creditor]() {
 		didSet {
-			saveDataOf(creditors, forKey: "Creditors")
+			LocalDataSource.saveDataOf(creditors, forKey: "Creditors")
 		}
 	}
 	
 	@Published var debtors = [Debtor]() {
 		didSet {
-			saveDataOf(debtors, forKey: "Debtors")
+			LocalDataSource.saveDataOf(debtors, forKey: "Debtors")
 		}
+	}
+	
+	// MARK: - Codable conformance for @Published properties
+	enum CodingKeys: CodingKey {
+		case bills, creditors, debtors
+	}
+	
+	func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		
+		try container.encode(bills, forKey: .bills)
+		try container.encode(creditors, forKey: .creditors)
+		try container.encode(debtors, forKey: .debtors)
+	}
+	
+	required init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		
+		bills = try container.decode([Bill].self, forKey: .bills)
+		creditors = try container.decode([Creditor].self, forKey: .creditors)
+		debtors = try container.decode([Debtor].self, forKey: .debtors)
 	}
 	
 	init() {
-		bills = loadDataFor(key: "Bills") ?? []
-		creditors = loadDataFor(key: "Creditors") ?? []
-		debtors = loadDataFor(key: "Debtors") ?? []
+		bills = LocalDataSource.loadDataFor(key: "Bills") ?? []
+		creditors = LocalDataSource.loadDataFor(key: "Creditors") ?? []
+		debtors = LocalDataSource.loadDataFor(key: "Debtors") ?? []
 	}
 	
 	// MARK: - Coding & Loading Data
-	private func loadDataFor<T: Codable>(key: String) -> T? {
-		if let data = UserDefaults.standard.data(forKey: key) {
-			let decoder = JSONDecoder()
-			if let decodedItems = try? decoder.decode(T.self, from: data) {
-				return decodedItems
-			}
-		}
-		
-		return nil
-	}
-	
-	private func saveDataOf<T: Codable>(_ data: T, forKey key: String) {
-		if let encodedData = try? JSONEncoder().encode(data) {
-			UserDefaults.standard.setValue(encodedData, forKey: key)
-		}
-	}
 }
 
-struct Debtor: Identifiable, Codable {
-	let id = UUID()
-	let date = Date()
-	let name: String
-	let amount: Double
-	let interestRate: Double
-	let payments: [Payment]
-	
-	var remainingAmount: Double {
-		amount - payments.reduce(0) { $0 + $1.amount }
-	}
-}
-
-struct Creditor: Identifiable, Codable {
-	let id = UUID()
-	let date = Date()
-	let name: String
-	let amount: Double
-	let interestRate: Double
-	let payments: [Payment]
-	
-	var remainingAmount: Double {
-		amount - payments.reduce(0) { $0 + $1.amount }
-	}
-}
-
-struct Payment: Identifiable, Codable {
-	let id = UUID()
-	let date = Date()
-	let amount: Double
-}
-
-struct Bill: Identifiable, Codable {
-	let id = UUID()
-	let date = Date()
-	let name: String
-	let totalPrice: Double
-	let totalAfterSale: Double
-	let amountSaved: Double
-	let items: [PurchasedItem]
-	
-	var createdAtDate: String {
-		let formatter = DateFormatter()
-		formatter.dateStyle = .long
-		return formatter.string(from: date)
-	}
-}
-
-
-struct PurchasedItem: Identifiable, Codable {
-	let id = UUID()
-	var name = ""
-	var price = 0.0
-	var numberOfPeople = 0
-	var sale = 0
-	var discountedPrice = 0.0
-}

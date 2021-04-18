@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,21 @@
 		CE5ADCAF2608FDBC00FCABB9 /* AddCreditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADCAE2608FDBC00FCABB9 /* AddCreditorView.swift */; };
 		CE5ADCB22608FDD000FCABB9 /* AddDebtorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADCB12608FDD000FCABB9 /* AddDebtorView.swift */; };
 		CE5ADCB9260A2BD300FCABB9 /* PlaceholderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADCB8260A2BD300FCABB9 /* PlaceholderImage.swift */; };
+		CEA26B6B262A0B1E00B2CE58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA26B6A262A0B1E00B2CE58 /* GoogleService-Info.plist */; };
+		CEA26B6F262AE0C900B2CE58 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = CEA26B6E262AE0C900B2CE58 /* FirebaseFirestoreSwift-Beta */; };
+		CEA26B71262AE0C900B2CE58 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CEA26B70262AE0C900B2CE58 /* FirebaseStorage */; };
+		CEA26B73262AE0C900B2CE58 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CEA26B72262AE0C900B2CE58 /* FirebaseAuth */; };
+		CEA26B75262AE0C900B2CE58 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CEA26B74262AE0C900B2CE58 /* FirebaseFirestore */; };
+		CEA26B77262AE0C900B2CE58 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = CEA26B76262AE0C900B2CE58 /* FirebaseStorageSwift-Beta */; };
+		CEA26B85262B269400B2CE58 /* CreditorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26B84262B269400B2CE58 /* CreditorRepository.swift */; };
+		CEA26B8A262B26E700B2CE58 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26B89262B26E700B2CE58 /* AuthenticationService.swift */; };
+		CEA26B8F262B2A9600B2CE58 /* ExpensesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26B8E262B2A9600B2CE58 /* ExpensesRepository.swift */; };
+		CEA26B95262C2A2900B2CE58 /* Debtor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26B94262C2A2900B2CE58 /* Debtor.swift */; };
+		CEA26B98262C2A5900B2CE58 /* Creditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26B97262C2A5900B2CE58 /* Creditor.swift */; };
+		CEA26B9B262C2A8900B2CE58 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26B9A262C2A8900B2CE58 /* Bill.swift */; };
+		CEA26B9E262C2AF900B2CE58 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26B9D262C2AF900B2CE58 /* Payment.swift */; };
+		CEA26BA1262C2B4400B2CE58 /* PurchasedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26BA0262C2B4400B2CE58 /* PurchasedItem.swift */; };
+		CEA26BA5262C34BB00B2CE58 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA26BA4262C34BB00B2CE58 /* LocalDataSource.swift */; };
 		CEFBDDE62567344C00DFDFCE /* DiscounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */; };
 		CEFBDDE82567344C00DFDFCE /* AddBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBDDE72567344C00DFDFCE /* AddBillView.swift */; };
 		CEFBDDEA2567344E00DFDFCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFBDDE92567344E00DFDFCE /* Assets.xcassets */; };
@@ -40,6 +55,16 @@
 		CE5ADCAE2608FDBC00FCABB9 /* AddCreditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCreditorView.swift; sourceTree = "<group>"; };
 		CE5ADCB12608FDD000FCABB9 /* AddDebtorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDebtorView.swift; sourceTree = "<group>"; };
 		CE5ADCB8260A2BD300FCABB9 /* PlaceholderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderImage.swift; sourceTree = "<group>"; };
+		CEA26B6A262A0B1E00B2CE58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEA26B84262B269400B2CE58 /* CreditorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditorRepository.swift; sourceTree = "<group>"; };
+		CEA26B89262B26E700B2CE58 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		CEA26B8E262B2A9600B2CE58 /* ExpensesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesRepository.swift; sourceTree = "<group>"; };
+		CEA26B94262C2A2900B2CE58 /* Debtor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debtor.swift; sourceTree = "<group>"; };
+		CEA26B97262C2A5900B2CE58 /* Creditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creditor.swift; sourceTree = "<group>"; };
+		CEA26B9A262C2A8900B2CE58 /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
+		CEA26B9D262C2AF900B2CE58 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
+		CEA26BA0262C2B4400B2CE58 /* PurchasedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedItem.swift; sourceTree = "<group>"; };
+		CEA26BA4262C34BB00B2CE58 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		CEFBDDE22567344C00DFDFCE /* Discounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscounterApp.swift; sourceTree = "<group>"; };
 		CEFBDDE72567344C00DFDFCE /* AddBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillView.swift; sourceTree = "<group>"; };
@@ -53,6 +78,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA26B77262AE0C900B2CE58 /* FirebaseStorageSwift-Beta in Frameworks */,
+				CEA26B6F262AE0C900B2CE58 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				CEA26B75262AE0C900B2CE58 /* FirebaseFirestore in Frameworks */,
+				CEA26B73262AE0C900B2CE58 /* FirebaseAuth in Frameworks */,
+				CEA26B71262AE0C900B2CE58 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +93,11 @@
 			isa = PBXGroup;
 			children = (
 				CE5ADC922604C52700FCABB9 /* Expenses.swift */,
+				CEA26BA0262C2B4400B2CE58 /* PurchasedItem.swift */,
+				CEA26B9A262C2A8900B2CE58 /* Bill.swift */,
+				CEA26B97262C2A5900B2CE58 /* Creditor.swift */,
+				CEA26B94262C2A2900B2CE58 /* Debtor.swift */,
+				CEA26B9D262C2AF900B2CE58 /* Payment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -101,6 +136,31 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		CEA26B8C262B29B000B2CE58 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				CEA26B84262B269400B2CE58 /* CreditorRepository.swift */,
+				CEA26B8E262B2A9600B2CE58 /* ExpensesRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		CEA26B91262B960C00B2CE58 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CEA26B89262B26E700B2CE58 /* AuthenticationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CEA26BA3262C345A00B2CE58 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				CEA26BA4262C34BB00B2CE58 /* LocalDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
 		CEFBDDD92567344C00DFDFCE = {
 			isa = PBXGroup;
 			children = (
@@ -122,9 +182,13 @@
 			children = (
 				CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */,
 				CE5ADC9826060D0400FCABB9 /* Localization.swift */,
+				CEA26BA3262C345A00B2CE58 /* DataSources */,
+				CEA26B91262B960C00B2CE58 /* Services */,
+				CEA26B8C262B29B000B2CE58 /* Repositories */,
 				CE5ADC912604C50F00FCABB9 /* Model */,
 				CE5ADCAB2608EEC400FCABB9 /* View */,
 				CEFBDDE92567344E00DFDFCE /* Assets.xcassets */,
+				CEA26B6A262A0B1E00B2CE58 /* GoogleService-Info.plist */,
 				CEFBDDEE2567344E00DFDFCE /* Info.plist */,
 				CEFBDDEB2567344E00DFDFCE /* Preview Content */,
 				CE5ADC9C2607C5BB00FCABB9 /* CodeTemplates.swift */,
@@ -156,6 +220,13 @@
 			dependencies = (
 			);
 			name = Discounter;
+			packageProductDependencies = (
+				CEA26B6E262AE0C900B2CE58 /* FirebaseFirestoreSwift-Beta */,
+				CEA26B70262AE0C900B2CE58 /* FirebaseStorage */,
+				CEA26B72262AE0C900B2CE58 /* FirebaseAuth */,
+				CEA26B74262AE0C900B2CE58 /* FirebaseFirestore */,
+				CEA26B76262AE0C900B2CE58 /* FirebaseStorageSwift-Beta */,
+			);
 			productName = Discounter;
 			productReference = CEFBDDE22567344C00DFDFCE /* Discounter.app */;
 			productType = "com.apple.product-type.application";
@@ -183,6 +254,9 @@
 				Base,
 			);
 			mainGroup = CEFBDDD92567344C00DFDFCE;
+			packageReferences = (
+				CEA26B6D262AE0C900B2CE58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = CEFBDDE32567344C00DFDFCE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -199,6 +273,7 @@
 			files = (
 				CEFBDDED2567344E00DFDFCE /* Preview Assets.xcassets in Resources */,
 				CEFBDDEA2567344E00DFDFCE /* Assets.xcassets in Resources */,
+				CEA26B6B262A0B1E00B2CE58 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,19 +285,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5ADC9D2607C5BB00FCABB9 /* CodeTemplates.swift in Sources */,
+				CEA26B98262C2A5900B2CE58 /* Creditor.swift in Sources */,
 				CE5ADC932604C52700FCABB9 /* Expenses.swift in Sources */,
 				CE5ADCA32608EE5400FCABB9 /* CreditorsListView.swift in Sources */,
+				CEA26B9B262C2A8900B2CE58 /* Bill.swift in Sources */,
 				CEFBDDE82567344C00DFDFCE /* AddBillView.swift in Sources */,
 				CE5ADC9926060D0400FCABB9 /* Localization.swift in Sources */,
 				CE5ADCA02608ED3B00FCABB9 /* BillsListView.swift in Sources */,
 				CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */,
+				CEA26BA5262C34BB00B2CE58 /* LocalDataSource.swift in Sources */,
 				CE5ADC8A2604AA2C00FCABB9 /* BillDetailsView.swift in Sources */,
 				CE5ADCAF2608FDBC00FCABB9 /* AddCreditorView.swift in Sources */,
+				CEA26B85262B269400B2CE58 /* CreditorRepository.swift in Sources */,
 				CEFBDDE62567344C00DFDFCE /* DiscounterApp.swift in Sources */,
+				CEA26BA1262C2B4400B2CE58 /* PurchasedItem.swift in Sources */,
+				CEA26B95262C2A2900B2CE58 /* Debtor.swift in Sources */,
+				CEA26B9E262C2AF900B2CE58 /* Payment.swift in Sources */,
 				CE5ADCB22608FDD000FCABB9 /* AddDebtorView.swift in Sources */,
 				CE344F722613954A00ADB662 /* DetailsView.swift in Sources */,
+				CEA26B8A262B26E700B2CE58 /* AuthenticationService.swift in Sources */,
 				CE5ADCB9260A2BD300FCABB9 /* PlaceholderImage.swift in Sources */,
 				CE5ADCA62608EE5E00FCABB9 /* DebtorsListView.swift in Sources */,
+				CEA26B8F262B2A9600B2CE58 /* ExpensesRepository.swift in Sources */,
 				CE344F602613249900ADB662 /* RatingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,7 +445,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wissa.Discounter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wissa.Expenser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -383,7 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wissa.Discounter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wissa.Expenser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -412,6 +496,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEA26B6D262AE0C900B2CE58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEA26B6E262AE0C900B2CE58 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA26B6D262AE0C900B2CE58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		CEA26B70262AE0C900B2CE58 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA26B6D262AE0C900B2CE58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		CEA26B72262AE0C900B2CE58 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA26B6D262AE0C900B2CE58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CEA26B74262AE0C900B2CE58 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA26B6D262AE0C900B2CE58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CEA26B76262AE0C900B2CE58 /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA26B6D262AE0C900B2CE58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEFBDDDA2567344C00DFDFCE /* Project object */;
 }

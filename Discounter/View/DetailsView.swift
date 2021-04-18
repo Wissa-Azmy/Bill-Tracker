@@ -23,9 +23,9 @@ struct DetailsView: View {
 						.fontWeight(.black)
 						.padding(8)
 						.foregroundColor(.white)
-						.background(Color.black.opacity(0.75))
+						.background(Color.black.opacity(0.5))
 						.clipShape(Capsule())
-						.offset(x: -5, y: -5)
+						.offset(x: -10, y: -10)
 				}
 				
 				Text("Unknown author")

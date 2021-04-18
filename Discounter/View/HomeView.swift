@@ -54,6 +54,7 @@ struct HomeView: View {
 					label: {
 						Image(systemName: "plus")
 					}
+					.font(.largeTitle)
 				}
 			}
 			
