@@ -1,5 +1,5 @@
 //
-//  ExpensesRepository.swift
+//  CreditorRepository.swift
 //  Discounter
 //
 //  Created by Wissa Michael on 17.04.21.
@@ -9,7 +9,7 @@ import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class ExpensesRepository: ObservableObject {
+class CreditorRepository: ObservableObject {
 	var userId = ""
 	private let path = "cards"
 	private let store = Firestore.firestore()
@@ -23,17 +23,18 @@ class ExpensesRepository: ObservableObject {
 	///  and then attaches a subscriber using sink(receiveValue:). This guarantees that when you get a user from AuthenticationService,
 	///  the code in the closure executes in the main thread.
 	init() {
-		// 1
-		authenticationService.$user.compactMap { user in
-			user?.uid
-		}.assign(to: \.userId, on: self).store(in: &cancellables)
-		// 2
-		authenticationService.$user.receive(on: DispatchQueue.main).sink { [weak self] _ in
-			self?.getCards()
-		}.store(in: &cancellables)
+//		authenticationService.$user.compactMap { user in
+//			user?.uid
+//		}.assign(to: \.userId, on: self).store(in: &cancellables)
+//
+//		authenticationService.$user.receive(on: DispatchQueue.main).sink { [weak self] _ in
+//			self?.getCreditors()
+//		}.store(in: &cancellables)
+		
+		getCreditors()
 	}
 	
-	private func getCards() {
+	private func getCreditors() {
 		store.collection(path).whereField("userId", isEqualTo: userId).addSnapshotListener { (querySnapshot, error) in
 			guard error == nil else { print(error?.localizedDescription ?? "") ; return }
 			
@@ -43,12 +44,9 @@ class ExpensesRepository: ObservableObject {
 		}
 	}
 	
-	func add(_ creditor: Expenses) {
-		var newCreditor = creditor
-		newCreditor.userId = userId
-		
+	func add(_ creditor: Creditor) {
 		do {
-			_ = try store.collection(path).addDocument(from: newCreditor)
+			_ = try store.collection(path).addDocument(from: creditor)
 		} catch {
 			assertionFailure("Unable to add card: \(error.localizedDescription)")
 		}
