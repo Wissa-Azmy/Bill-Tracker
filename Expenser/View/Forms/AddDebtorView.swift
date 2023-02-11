@@ -102,7 +102,7 @@ struct AddDebtorView: View {
 					}
 				}
 			}
-			.navigationTitle("Add New Debtor")
+			.navigationTitle("Add Debt")
 			.navigationBarItems(trailing: Button(Localization.General.save) {
 				let creditor = Debtor(
 					name: creditorName,

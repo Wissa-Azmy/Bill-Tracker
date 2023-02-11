@@ -68,7 +68,7 @@ struct AddCreditorView: View {
 					}
 				}
 			}
-			.navigationTitle("Add New Creditor")
+			.navigationTitle("Add Credit")
 			.navigationBarItems(trailing: Button(Localization.General.save) {
                 viewModel.addCreditor()
                 
