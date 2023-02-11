@@ -10,14 +10,18 @@ import FirebaseFirestoreSwift
 
 struct Creditor: Identifiable, Codable, Hashable {
     @DocumentID var id: String?
-    let date = Date()
     let name: String
     let amount: Double
     let interestRate: Double
     let payments: [Payment]
+    let date: Date
+
+    var paid: Double {
+        payments.reduce(0) { $0 + $1.amount }
+    }
 
     var remainingAmount: Double {
-        amount - payments.reduce(0) { $0 + $1.amount }
+        amount - paid
     }
 
     static func == (lhs: Creditor, rhs: Creditor) -> Bool {

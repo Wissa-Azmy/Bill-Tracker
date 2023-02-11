@@ -70,7 +70,8 @@ final class AddCreditViewModel: ObservableObject {
             name: creditorName,
             amount: Double(creditAmount) ?? 0,
             interestRate: Double(interestRate),
-            payments: payments
+            payments: payments,
+            date: Date()
         )
 
         expensesStore.creditors.append(creditor)

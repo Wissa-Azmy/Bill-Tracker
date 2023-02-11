@@ -43,7 +43,7 @@ struct AddCreditorView: View {
 				
 				// Stats View
 				Section(header: Text("Stats")) {
-                    Text("Original Amount: \(viewModel.originalAmount)")
+                    Text("Amount: \(viewModel.originalAmount)")
                     Text("Paid: \(viewModel.paidAmount)")
                     Text("Remaining: \(viewModel.remainingAmount)")
 				}
@@ -53,8 +53,13 @@ struct AddCreditorView: View {
 					List {
                         ForEach (viewModel.payments, id: \.self) { payment in
 							HStack {
-								Text("$ \(payment.amount, specifier: "%.2f") |")
-								Text("\(payment.date)% |")
+								Text("$ \(payment.amount, specifier: "%.2f")")
+                                    .foregroundColor(.green)
+
+                                Spacer()
+
+                                Text("\(payment.date.formatted(date: .abbreviated, time: .omitted))")
+                                    .foregroundColor(.gray)
 							}
 						}
 						.onDelete(perform: { indexSet in
