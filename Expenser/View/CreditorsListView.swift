@@ -13,7 +13,7 @@ struct CreditorsListView: View {
     var body: some View {
 		if !creditors.isEmpty {
 			List {
-				ForEach(creditors) { creditor in
+                ForEach(creditors, id: \.self) { creditor in
 					NavigationLink(destination: Text("Creditor Details")) {
 						VStack {
 							HStack {

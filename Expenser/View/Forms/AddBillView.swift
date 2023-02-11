@@ -193,6 +193,6 @@ struct AddBillView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AddBillView(expenses: Expenses())
+        AddBillView(expenses: Expenses.shared)
     }
 }

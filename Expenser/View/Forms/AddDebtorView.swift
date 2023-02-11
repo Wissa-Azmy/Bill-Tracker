@@ -39,7 +39,7 @@ struct AddDebtorView: View {
 	}
 	
 	fileprivate func addPayment() {
-		let payment = Payment(amount: Double(paymentAmount) ?? 0)
+        let payment = Payment(amount: Double(paymentAmount) ?? 0, date: Date())
 		
 		payments.append(payment)
 	}
@@ -120,6 +120,6 @@ struct AddDebtorView: View {
 
 struct AddDebtorView_Previews: PreviewProvider {
     static var previews: some View {
-		AddDebtorView(expenses: Expenses())
+        AddDebtorView(expenses: Expenses.shared)
     }
 }

@@ -8,8 +8,8 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Payment: Identifiable, Codable {
+struct Payment: Identifiable, Codable, Hashable {
 	@DocumentID var id: String?
-	let date = Date()
-	let amount: Double
+    let amount: Double
+    let date: Date
 }

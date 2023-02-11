@@ -24,7 +24,7 @@ struct DiscounterApp: App {
 	
     var body: some Scene {
 		WindowGroup<HomeView> {
-            HomeView(expenses: Expenses())
+            HomeView(expenses: Expenses.shared)
         }
     }
 }

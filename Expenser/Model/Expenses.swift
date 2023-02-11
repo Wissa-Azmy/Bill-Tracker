@@ -11,7 +11,9 @@ import FirebaseFirestoreSwift
 class Expenses: ObservableObject, Codable {
 	@DocumentID var id: String?
 	var userId: String?
-	
+
+    static let shared = Expenses()
+
 	@Published var bills = [Bill]() {
 		didSet {
 			LocalDataSource.saveDataOf(bills, forKey: "Bills")
@@ -51,7 +53,7 @@ class Expenses: ObservableObject, Codable {
 		debtors = try container.decode([Debtor].self, forKey: .debtors)
 	}
 	
-	init() {
+	private init() {
 		bills = LocalDataSource.loadDataFor(key: "Bills") ?? []
 		creditors = LocalDataSource.loadDataFor(key: "Creditors") ?? []
 		debtors = LocalDataSource.loadDataFor(key: "Debtors") ?? []

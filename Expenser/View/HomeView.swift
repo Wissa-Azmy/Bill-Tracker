@@ -62,7 +62,7 @@ struct HomeView: View {
 			.sheet(isPresented: $showingAddNewItemSheet){
 				switch addNewItemSectionIndex {
 					case 0:
-						AddCreditorView(expenses: expenses)
+                    AddCreditorView(viewModel: AddCreditViewModel())
 					case 1:
 						AddDebtorView(expenses: expenses)
 					case 2:
@@ -77,6 +77,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(expenses: Expenses())
+        HomeView(expenses: Expenses.shared)
     }
 }

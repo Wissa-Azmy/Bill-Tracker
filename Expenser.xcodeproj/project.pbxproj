@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B5594452997AE66007F685E /* AddCrediViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5594442997AE66007F685E /* AddCrediViewModel.swift */; };
 		CE344F602613249900ADB662 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344F5F2613249900ADB662 /* RatingView.swift */; };
 		CE344F722613954A00ADB662 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344F712613954A00ADB662 /* DetailsView.swift */; };
 		CE5ADC8A2604AA2C00FCABB9 /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B5594442997AE66007F685E /* AddCrediViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCrediViewModel.swift; sourceTree = "<group>"; };
 		CE344F5F2613249900ADB662 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		CE344F712613954A00ADB662 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				CEFBDDE72567344C00DFDFCE /* AddBillView.swift */,
 				CE5ADCAE2608FDBC00FCABB9 /* AddCreditorView.swift */,
 				CE5ADCB12608FDD000FCABB9 /* AddDebtorView.swift */,
+				7B5594442997AE66007F685E /* AddCrediViewModel.swift */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				CE5ADC9926060D0400FCABB9 /* Localization.swift in Sources */,
 				CE5ADCA02608ED3B00FCABB9 /* BillsListView.swift in Sources */,
 				CE5ADC8D2604AA6800FCABB9 /* HomeView.swift in Sources */,
+				7B5594452997AE66007F685E /* AddCrediViewModel.swift in Sources */,
 				CEA26BA5262C34BB00B2CE58 /* LocalDataSource.swift in Sources */,
 				CE5ADC8A2604AA2C00FCABB9 /* BillDetailsView.swift in Sources */,
 				CE5ADCAF2608FDBC00FCABB9 /* AddCreditorView.swift in Sources */,
