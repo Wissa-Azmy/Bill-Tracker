@@ -43,15 +43,15 @@ struct AddCreditorView: View {
 				
 				// Stats View
 				Section(header: Text("Stats")) {
-                    Text("Original Amount: \(viewModel.originalAmount, specifier: "%.2f")")
-                    Text("Paid: \(viewModel.paidAmount, specifier: "%.2f")")
-                    Text("Remaining: \(viewModel.remainingAmount, specifier: "%.2f")")
+                    Text("Original Amount: \(viewModel.originalAmount)")
+                    Text("Paid: \(viewModel.paidAmount)")
+                    Text("Remaining: \(viewModel.remainingAmount)")
 				}
 				// Filter items
                 Section(header: Text("Payments: \(viewModel.payments.count)")) {
 					// MARK: - List of Items
 					List {
-                        ForEach (viewModel.payments) { payment in
+                        ForEach (viewModel.payments, id: \.self) { payment in
 							HStack {
 								Text("$ \(payment.amount, specifier: "%.2f") |")
 								Text("\(payment.date)% |")

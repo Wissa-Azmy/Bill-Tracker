@@ -6,19 +6,25 @@
 //
 
 import Foundation
+import Combine
 
 final class AddCreditViewModel: ObservableObject {
     @Published var creditorName = ""
     @Published var creditAmount = ""
     @Published var interestRate = 0
     @Published var paymentAmount = ""
+    @Published var remainingAmount = ""
     @Published var showingResetAlert = false
 
-    @Published var originalAmount = 0.0
-    @Published var paidAmount = 0.0
-    @Published var remainingAmount = 0.0
-
     @Published var payments = [Payment]()
+
+    var originalAmount: String {
+        String(format: "%.2f", Double(creditAmount) ?? 0.0)
+    }
+
+    var paidAmount: String {
+        return String(format: "%.2f", Double(totalPaid))
+    }
 
     var itemPriceAfterSale: Double {
         let price = Double(paymentAmount) ?? 0
@@ -30,7 +36,13 @@ final class AddCreditViewModel: ObservableObject {
         paymentAmount.isEmpty || paymentAmount == " " || Int(paymentAmount) ?? 0 < 1
     }
 
-    var expensesStore: Expenses
+    private var totalPaid: Double {
+        payments.reduce(0) { $0 + $1.amount }
+    }
+    private var expensesStore: Expenses
+    private var cancellables = Set<AnyCancellable>()
+
+    // MARK: - Initialization
 
     convenience init() {
         self.init(expensesStore: Expenses.shared)
@@ -38,6 +50,9 @@ final class AddCreditViewModel: ObservableObject {
 
     init(expensesStore: Expenses) {
         self.expensesStore = expensesStore
+
+        bindPayments()
+        bindCreditAmount()
     }
 
     func resetFormFields() {
@@ -59,5 +74,25 @@ final class AddCreditViewModel: ObservableObject {
         )
 
         expensesStore.creditors.append(creditor)
+    }
+
+    private func bindCreditAmount() {
+        $creditAmount.sink(receiveValue: updateRemainingAmount).store(in: &cancellables)
+    }
+
+    private func bindPayments() {
+        $payments.sink {
+            let amount = Double(self.creditAmount) ?? 0.0
+            let paid = $0.reduce(0) { $0 + $1.amount }
+            let remaining = amount - paid
+
+            self.remainingAmount = String(format: "%.2f", remaining)
+        }.store(in: &cancellables)
+    }
+
+    private func updateRemainingAmount(_ value: String) {
+        let netAmount = Double(creditAmount) ?? 0.0 - payments.reduce(0) { $0 + $1.amount }
+
+        remainingAmount = String(format: "%.2f", netAmount)
     }
 }

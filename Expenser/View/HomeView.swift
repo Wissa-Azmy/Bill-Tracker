@@ -52,9 +52,9 @@ struct HomeView: View {
 						Button("Add New Bill") { showAddNewItemSheet(for: 2) }
 					}
 					label: {
-						Image(systemName: "plus")
+						Image(systemName: "plus.circle")
+                            .frame(width: 40, height: 40)
 					}
-					.font(.largeTitle)
 				}
 			}
 			
