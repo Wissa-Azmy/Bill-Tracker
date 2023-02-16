@@ -55,7 +55,14 @@ struct HomeView: View {
             .sheet(isPresented: $showingAddNewItemSheet){
                 switch addNewItemSectionIndex {
                 case 0:
-                    AddCreditorView(viewModel: AddCreditViewModel())
+                    let vm = AddCreditViewModel()
+                    Sheet(
+                        title: "Add Credit",
+                        dismissButtonTitle: Localization.General.save,
+                        dismissAction: vm.addCreditor
+                    ) {
+                        AddCreditorView(viewModel: vm)
+                    }
                 case 1:
                     AddDebtorView(expenses: expenses)
                 case 2:

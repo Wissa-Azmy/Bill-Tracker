@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7B5594452997AE66007F685E /* AddCrediViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5594442997AE66007F685E /* AddCrediViewModel.swift */; };
+		7BA8425F299EC3F6006EDBC5 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8425E299EC3F6006EDBC5 /* Sheet.swift */; };
+		7BA84261299EC453006EDBC5 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA84260299EC453006EDBC5 /* PreviewData.swift */; };
+		7BA84264299EC4F5006EDBC5 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA84263299EC4F5006EDBC5 /* Double+.swift */; };
 		CE344F602613249900ADB662 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344F5F2613249900ADB662 /* RatingView.swift */; };
 		CE344F722613954A00ADB662 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344F712613954A00ADB662 /* DetailsView.swift */; };
 		CE5ADC8A2604AA2C00FCABB9 /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */; };
@@ -44,6 +47,9 @@
 
 /* Begin PBXFileReference section */
 		7B5594442997AE66007F685E /* AddCrediViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCrediViewModel.swift; sourceTree = "<group>"; };
+		7BA8425E299EC3F6006EDBC5 /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
+		7BA84260299EC453006EDBC5 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
+		7BA84263299EC4F5006EDBC5 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		CE344F5F2613249900ADB662 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		CE344F712613954A00ADB662 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
@@ -91,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7BA84262299EC4DA006EDBC5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7BA84263299EC4F5006EDBC5 /* Double+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CE5ADC912604C50F00FCABB9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +129,7 @@
 				CE5ADCA52608EE5E00FCABB9 /* DebtorsListView.swift */,
 				CE5ADC892604AA2C00FCABB9 /* BillDetailsView.swift */,
 				CE344F712613954A00ADB662 /* DetailsView.swift */,
+				7BA8425E299EC3F6006EDBC5 /* Sheet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,6 +198,7 @@
 		CEFBDDE42567344C00DFDFCE /* Expenser */ = {
 			isa = PBXGroup;
 			children = (
+				7BA84262299EC4DA006EDBC5 /* Extensions */,
 				CEFBDDE52567344C00DFDFCE /* DiscounterApp.swift */,
 				CE5ADC9826060D0400FCABB9 /* Localization.swift */,
 				CEA26BA3262C345A00B2CE58 /* DataSources */,
@@ -203,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				CEFBDDEC2567344E00DFDFCE /* Preview Assets.xcassets */,
+				7BA84260299EC453006EDBC5 /* PreviewData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -309,7 +326,10 @@
 				CE344F722613954A00ADB662 /* DetailsView.swift in Sources */,
 				CEA26B8A262B26E700B2CE58 /* AuthenticationService.swift in Sources */,
 				CE5ADCB9260A2BD300FCABB9 /* PlaceholderImage.swift in Sources */,
+				7BA84264299EC4F5006EDBC5 /* Double+.swift in Sources */,
 				CE5ADCA62608EE5E00FCABB9 /* DebtorsListView.swift in Sources */,
+				7BA84261299EC453006EDBC5 /* PreviewData.swift in Sources */,
+				7BA8425F299EC3F6006EDBC5 /* Sheet.swift in Sources */,
 				CEA26B8F262B2A9600B2CE58 /* ExpensesRepository.swift in Sources */,
 				CE344F602613249900ADB662 /* RatingView.swift in Sources */,
 			);

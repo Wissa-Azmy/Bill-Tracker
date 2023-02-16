@@ -14,7 +14,7 @@ struct CreditorsListView: View {
 		if !creditors.isEmpty {
 			List {
                 ForEach(creditors, id: \.self) { credit in
-					NavigationLink(destination: Text("Creditor Details")) {
+					NavigationLink(destination: AddCreditorView(viewModel: AddCreditViewModel(credit: credit))) {
                         CreditItemCard(credit: credit)
 					}
 				}
@@ -30,7 +30,9 @@ struct CreditorsListView: View {
 
 struct CreditorsList_Previews: PreviewProvider {
     static var previews: some View {
-		CreditorsListView(creditors: .constant([Creditor]()))
+        NavigationView {
+            CreditorsListView(creditors: .constant([PreviewData.credit]))
+        }
     }
 }
 
@@ -70,16 +72,8 @@ struct CreditItemCard: View {
 }
 
 struct CreditItemCard_Previews: PreviewProvider {
-    static let credit = Creditor(
-        name: "Item",
-        amount: 200,
-        interestRate: 0,
-        payments: [],
-        date: Date()
-    )
-
     static var previews: some View {
-        CreditItemCard(credit: credit)
+        CreditItemCard(credit: PreviewData.credit)
             .padding()
     }
 }

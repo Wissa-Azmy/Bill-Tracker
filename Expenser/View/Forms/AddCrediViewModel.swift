@@ -11,7 +11,7 @@ import Combine
 final class AddCreditViewModel: ObservableObject {
     @Published var creditorName = ""
     @Published var creditAmount = ""
-    @Published var interestRate = 0
+    @Published var interestRate = 0.0
     @Published var paymentAmount = ""
     @Published var remainingAmount = ""
     @Published var showingResetAlert = false
@@ -44,12 +44,13 @@ final class AddCreditViewModel: ObservableObject {
 
     // MARK: - Initialization
 
-    convenience init() {
-        self.init(expensesStore: Expenses.shared)
+    convenience init(credit: Creditor? = nil) {
+        self.init(expensesStore: Expenses.shared, credit: credit)
     }
 
-    init(expensesStore: Expenses) {
+    init(expensesStore: Expenses, credit: Creditor?) {
         self.expensesStore = expensesStore
+        if let credit { updateForm(with: credit) }
 
         bindPayments()
         bindCreditAmount()
@@ -75,6 +76,14 @@ final class AddCreditViewModel: ObservableObject {
         )
 
         expensesStore.creditors.append(creditor)
+    }
+
+    private func updateForm(with credit: Creditor) {
+        creditorName = credit.name
+        creditAmount = credit.amount.toString
+        remainingAmount = credit.remainingAmount.toString
+        interestRate = credit.interestRate
+        payments = credit.payments
     }
 
     private func bindCreditAmount() {
