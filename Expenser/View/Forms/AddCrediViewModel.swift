@@ -50,10 +50,10 @@ final class AddCreditViewModel: ObservableObject {
 
     init(expensesStore: Expenses, credit: Creditor?) {
         self.expensesStore = expensesStore
-        if let credit { updateForm(with: credit) }
 
         bindPayments()
         bindCreditAmount()
+        if let credit { updateForm(with: credit) }
     }
 
     func resetFormFields() {
