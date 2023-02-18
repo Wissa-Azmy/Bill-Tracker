@@ -1,5 +1,5 @@
 //
-//  Expenses.swift
+//  ExpensesDataStore.swift
 //  Discounter
 //
 //  Created by Wissa Michael on 19.03.21.
@@ -8,11 +8,11 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-class Expenses: ObservableObject, Codable {
+class ExpensesDataStore: ObservableObject, Codable {
 	@DocumentID var id: String?
 	var userId: String?
 
-    static let shared = Expenses()
+    static let shared = ExpensesDataStore()
 
 	@Published var bills = [Bill]() {
 		didSet {
@@ -20,9 +20,9 @@ class Expenses: ObservableObject, Codable {
 		}
 	}
 	
-	@Published var creditors = [Creditor]() {
+	@Published var credits = [Credit]() {
 		didSet {
-			LocalDataSource.saveDataOf(creditors, forKey: "Creditors")
+			LocalDataSource.saveDataOf(credits, forKey: "Creditors")
 		}
 	}
 	
@@ -41,7 +41,7 @@ class Expenses: ObservableObject, Codable {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		
 		try container.encode(bills, forKey: .bills)
-		try container.encode(creditors, forKey: .creditors)
+		try container.encode(credits, forKey: .creditors)
 		try container.encode(debtors, forKey: .debtors)
 	}
 	
@@ -49,13 +49,13 @@ class Expenses: ObservableObject, Codable {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		
 		bills = try container.decode([Bill].self, forKey: .bills)
-		creditors = try container.decode([Creditor].self, forKey: .creditors)
+		credits = try container.decode([Credit].self, forKey: .creditors)
 		debtors = try container.decode([Debtor].self, forKey: .debtors)
 	}
 	
 	private init() {
 		bills = LocalDataSource.loadDataFor(key: "Bills") ?? []
-		creditors = LocalDataSource.loadDataFor(key: "Creditors") ?? []
+		credits = LocalDataSource.loadDataFor(key: "Creditors") ?? []
 		debtors = LocalDataSource.loadDataFor(key: "Debtors") ?? []
 	}
 	

@@ -16,7 +16,7 @@ class CreditorRepository: ObservableObject {
 	private let authenticationService = AuthenticationService()
 	private var cancellables = Set<AnyCancellable>()
 	
-	@Published var creditors = [Creditor]()
+	@Published var creditors = [Credit]()
 	
 	/// 1- Bind user‘s id from AuthenticationService to the repository’s userId. It also stores the object in cancellables so it can be canceled later.
 	/// 2- This code observes the changes in user, uses receive(on:options:) to set the thread where the code will execute
@@ -39,12 +39,12 @@ class CreditorRepository: ObservableObject {
 			guard error == nil else { print(error?.localizedDescription ?? "") ; return }
 			
 			self.creditors = querySnapshot?.documents.compactMap { document in
-				try? document.data(as: Creditor.self)
+				try? document.data(as: Credit.self)
 			} ?? []
 		}
 	}
 	
-	func add(_ creditor: Creditor) {
+	func add(_ creditor: Credit) {
 		do {
 			_ = try store.collection(path).addDocument(from: creditor)
 		} catch {
@@ -56,7 +56,7 @@ class CreditorRepository: ObservableObject {
 	/// To achieve this: a @DocumentID wrapped property must be provided in the data model
 	/// This property is then used to identify the document to update  and leaving this property untouched on the firestore side
 	/// - Parameter card: Card
-	func update(_ creditor: Creditor) {
+	func update(_ creditor: Credit) {
 		guard let creditorId = creditor.id else { return }
 		
 		do {
@@ -66,7 +66,7 @@ class CreditorRepository: ObservableObject {
 		}
 	}
 	
-	func remove(_ creditor: Creditor) {
+	func remove(_ creditor: Credit) {
 		guard let creditorId = creditor.id else { return }
 		
 		store.collection(path).document(creditorId).delete { error in

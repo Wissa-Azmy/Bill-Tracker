@@ -1,5 +1,5 @@
 //
-//  Creditor.swift
+//  Credit.swift
 //  Discounter
 //
 //  Created by Wissa Michael on 18.04.21.
@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Creditor: Identifiable, Codable, Hashable {
+struct Credit: Identifiable, Codable, Hashable {
     @DocumentID var id: String?
     let name: String
     let amount: Double
@@ -24,7 +24,7 @@ struct Creditor: Identifiable, Codable, Hashable {
         amount - paid
     }
 
-    static func == (lhs: Creditor, rhs: Creditor) -> Bool {
+    static func == (lhs: Credit, rhs: Credit) -> Bool {
         lhs.name == rhs.name
     }
 }

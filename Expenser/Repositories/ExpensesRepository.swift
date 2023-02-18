@@ -16,7 +16,7 @@ class ExpensesRepository: ObservableObject {
 //	private let authenticationService = AuthenticationService()
 	private var cancellables = Set<AnyCancellable>()
 	
-	@Published var expenses = [Expenses]()
+	@Published var expenses = [ExpensesDataStore]()
 	
 	/// 1- Bind user‘s id from AuthenticationService to the repository’s userId. It also stores the object in cancellables so it can be canceled later.
 	/// 2- This code observes the changes in user, uses receive(on:options:) to set the thread where the code will execute
@@ -40,12 +40,12 @@ class ExpensesRepository: ObservableObject {
 			guard error == nil else { print(error?.localizedDescription ?? "") ; return }
 			
 			self.expenses = querySnapshot?.documents.compactMap { document in
-				try? document.data(as: Expenses.self)
+				try? document.data(as: ExpensesDataStore.self)
 			} ?? []
 		}
 	}
 	
-	func add(_ expenses: Expenses) {
+	func add(_ expenses: ExpensesDataStore) {
 		do {
 			_ = try store.collection(path).addDocument(from: expenses)
 		} catch {
@@ -57,7 +57,7 @@ class ExpensesRepository: ObservableObject {
 	/// To achieve this: a @DocumentID wrapped property must be provided in the data model
 	/// This property is then used to identify the document to update  and leaving this property untouched on the firestore side
 	/// - Parameter card: Card
-	func update(_ expenses: Expenses) {
+	func update(_ expenses: ExpensesDataStore) {
 		guard let expensesId = expenses.id else { return }
 		
 		do {
@@ -67,7 +67,7 @@ class ExpensesRepository: ObservableObject {
 		}
 	}
 	
-	func remove(_ expenses: Expenses) {
+	func remove(_ expenses: ExpensesDataStore) {
 		guard let expensesId = expenses.id else { return }
 		
 		store.collection(path).document(expensesId).delete { error in

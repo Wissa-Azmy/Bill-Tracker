@@ -8,7 +8,7 @@
 import Foundation
 
 struct PreviewData {
-    static let credit = Creditor(
+    static let credit = Credit(
         name: "Some Creditor",
         amount: 200,
         interestRate: 0,

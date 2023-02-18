@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddDebtorView: View {
 	@Environment(\.presentationMode) var presentationMode
-	@ObservedObject var expenses: Expenses
+	@ObservedObject var expenses: ExpensesDataStore
 	
 	@State private var creditorName = ""
 	@State private var creditAmount = ""
@@ -120,6 +120,6 @@ struct AddDebtorView: View {
 
 struct AddDebtorView_Previews: PreviewProvider {
     static var previews: some View {
-        AddDebtorView(expenses: Expenses.shared)
+        AddDebtorView(expenses: ExpensesDataStore.shared)
     }
 }

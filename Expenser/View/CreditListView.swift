@@ -1,5 +1,5 @@
 //
-//  CreditorsListView.swift
+//  CreditListView.swift
 //  Discounter
 //
 //  Created by Wissa Michael on 22.03.21.
@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct CreditorsListView: View {
-	@Binding var creditors: [Creditor]
+struct CreditListView: View {
+	@Binding var credits: [Credit]
 	
     var body: some View {
-		if !creditors.isEmpty {
+		if !credits.isEmpty {
 			List {
-                ForEach(creditors, id: \.self) { credit in
-					NavigationLink(destination: AddCreditorView(viewModel: AddCreditViewModel(credit: credit))) {
+                ForEach(credits, id: \.self) { credit in
+					NavigationLink(destination: AddCreditView(viewModel: AddCreditViewModel(credit: credit))) {
                         CreditItemCard(credit: credit)
 					}
 				}
                 .onDelete { indexSet in
-                    creditors.remove(atOffsets: indexSet)
+                    credits.remove(atOffsets: indexSet)
                 }
 			}
 		} else {
@@ -31,13 +31,13 @@ struct CreditorsListView: View {
 struct CreditorsList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CreditorsListView(creditors: .constant([PreviewData.credit]))
+            CreditListView(credits: .constant([PreviewData.credit]))
         }
     }
 }
 
 struct CreditItemCard: View {
-    let credit: Creditor
+    let credit: Credit
 
     var body: some View {
         HStack {

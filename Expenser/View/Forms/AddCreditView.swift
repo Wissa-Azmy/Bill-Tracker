@@ -1,5 +1,5 @@
 //
-//  AddCreditorView.swift
+//  AddCreditView.swift
 //  Discounter
 //
 //  Created by Wissa Michael on 22.03.21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddCreditorView: View {
+struct AddCreditView: View {
     @ObservedObject var viewModel: AddCreditViewModel
 	
     var body: some View {
@@ -70,6 +70,6 @@ struct AddCreditorView: View {
 
 struct AddCreditorView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCreditorView(viewModel: AddCreditViewModel())
+        AddCreditView(viewModel: AddCreditViewModel())
     }
 }

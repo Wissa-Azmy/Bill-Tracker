@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddBillView: View {
 	@Environment(\.presentationMode) var presentationMode
-	@ObservedObject var expenses: Expenses
+	@ObservedObject var expenses: ExpensesDataStore
 	
 	@State private var billName = ""
 	@State private var itemName = ""
@@ -193,6 +193,6 @@ struct AddBillView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AddBillView(expenses: Expenses.shared)
+        AddBillView(expenses: ExpensesDataStore.shared)
     }
 }

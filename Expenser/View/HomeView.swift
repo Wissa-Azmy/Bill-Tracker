@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-	@ObservedObject var expenses: Expenses
+	@ObservedObject var expenses: ExpensesDataStore
 	@State private var showingAddNewItemSheet = false
 	@State private var expensesSections = ["Credit", "Debts", "Bills"]
 	@State private var filterSelectionIndex = 0
@@ -28,7 +28,7 @@ struct HomeView: View {
                 VStack {
                     switch filterSelectionIndex {
                     case 0:
-                        CreditorsListView(creditors: $expenses.creditors)
+                        CreditListView(credits: $expenses.credits)
                     case 1:
                         DebtorsListView(debtors: $expenses.debtors)
                     case 2:
@@ -61,7 +61,7 @@ struct HomeView: View {
                         dismissButtonTitle: Localization.General.save,
                         dismissAction: vm.addCreditor
                     ) {
-                        AddCreditorView(viewModel: vm)
+                        AddCreditView(viewModel: vm)
                     }
                 case 1:
                     AddDebtorView(expenses: expenses)
@@ -89,6 +89,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(expenses: Expenses.shared)
+        HomeView(expenses: ExpensesDataStore.shared)
     }
 }

@@ -39,16 +39,16 @@ final class AddCreditViewModel: ObservableObject {
     private var totalPaid: Double {
         payments.reduce(0) { $0 + $1.amount }
     }
-    private var expensesStore: Expenses
+    private var expensesStore: ExpensesDataStore
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initialization
 
-    convenience init(credit: Creditor? = nil) {
-        self.init(expensesStore: Expenses.shared, credit: credit)
+    convenience init(credit: Credit? = nil) {
+        self.init(expensesStore: ExpensesDataStore.shared, credit: credit)
     }
 
-    init(expensesStore: Expenses, credit: Creditor?) {
+    init(expensesStore: ExpensesDataStore, credit: Credit?) {
         self.expensesStore = expensesStore
 
         bindPayments()
@@ -67,7 +67,7 @@ final class AddCreditViewModel: ObservableObject {
     }
 
     func addCreditor() {
-        let creditor = Creditor(
+        let creditor = Credit(
             name: creditorName,
             amount: Double(creditAmount) ?? 0,
             interestRate: Double(interestRate),
@@ -75,10 +75,10 @@ final class AddCreditViewModel: ObservableObject {
             date: Date()
         )
 
-        expensesStore.creditors.append(creditor)
+        expensesStore.credits.append(creditor)
     }
 
-    private func updateForm(with credit: Creditor) {
+    private func updateForm(with credit: Credit) {
         creditorName = credit.name
         creditAmount = credit.amount.toString
         remainingAmount = credit.remainingAmount.toString
